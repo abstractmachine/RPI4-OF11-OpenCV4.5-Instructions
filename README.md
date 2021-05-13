@@ -77,6 +77,8 @@ Tip: if you can't see your command line because of overscan, once you are logged
 When you get to the command line, open `sudo raspi-config` to start configuring your installation
 
 ### Keyboard
+In this order of frequency, I use: French, Swiss French, American, Korean, Chinese, Japanese, Swiss German, and a whole bunch of other keyboards (my students are from everywhere). Here is how I set up my French keyboards:
+
 - `5` Localisation Options > `L3` Keyboard > `Generic 105-Key` (or whatever) > `other` > `French` > Keyboard layout `French` > `default` > `no compose key`
 
 ### Wifi
