@@ -384,3 +384,14 @@ And comment out `ofSetupOpenGL` in the `ofAppRunner.cpp` file on line #31.
 make Release -C /home/pi/openFrameworks/libs/openFrameworksCompiled/project
 ```
 
+### Compile First App
+We are not using the openFrameworks examples, because we need to use the ofxRPI4Window instead
+```
+cp -R /home/pi/openFrameworks/addons/ofxRPI4Window/example-billboard /home/pi/openFrameworks/apps/myApps/example-billboard
+cd /home/pi/openFrameworks/apps/myApps/example-billboard
+make
+make run
+```
+
+### Create an OpenCV + ofxOsc Capable project
+*To be continued*
