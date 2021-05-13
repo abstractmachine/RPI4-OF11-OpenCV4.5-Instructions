@@ -339,6 +339,8 @@ python3
 Cf. [https://openframeworks.cc/setup/raspberrypi/]()
 
 ## Install ofxRPI4Window
+Before compiling openFrameworks, install ofxRPIWindow.
+
 Cf. [https://github.com/jvcleave/ofxRPI4Window]()
 
 Change config.linuxarmv6l.default.mk file:
@@ -357,4 +359,5 @@ else
 endif
 ```
 
-
+And comment out `ofSetupOpenGL` in the `ofAppRunner.cpp` file on line #31.
+[https://github.com/openframeworks/openFrameworks/blob/master/libs/openFrameworks/app/ofAppRunner.cpp#L31]()
