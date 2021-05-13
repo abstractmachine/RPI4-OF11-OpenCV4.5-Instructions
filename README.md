@@ -411,3 +411,41 @@ git clone https://github.com/kashimAstro/ofxGPIO.git
 This project will turn on a GPIO pin, send out a "hello" message via the OSC (OpenSoundControl) protocol, and capture/display the feed from a video input. If this project compiles and runs, we're finally in a good place to hunker down and get to work.
 
 *To be continued*
+
+
+## Auto-start An App After Boot
+
+We are going to use `systemd` to auto-start an app. This requires creating a script and then loading that script into `systemctl`.
+
+Cf. [https://www.raspberrypi.org/documentation/linux/usage/systemd.md]()
+
+Create the config file:
+
+```
+[Unit]
+Description=AppName
+After=network.target
+
+[Service]
+ExecStart=/home/pi/openFrameworks/apps/myApps/AppName/bin/AppName
+
+[Install]
+WantedBy=multi-user.target
+```
+
+*To be continued (esp. commands to start, stop, disable, enable, and check output/errors of systemd services)*
+
+## Static IP Over Ethernet
+For installations, I tend to share my phone wifi with the Raspberry, so that I do not have any ugly hacks of my installation over the local wifi of the museum/school/whatever. Any other communication to/from the Raspberry, I use a directly wired Ethernet connections using a static IP adress. This allows me to code a fixed value in my openFrameworks app for the OSC communication.
+
+- Cf. [https://www.circuitbasics.com/how-to-set-up-a-static-ip-on-the-raspberry-pi/]()
+
+`sudo nano /etc/dhcpcd.conf`
+
+Set the Ethernet port configuration to a static address. Use `10.0.0.2` for Controller and `10.0.0.3` for Slave. I formerly used `10.0.0.1` but some routers prefer to reserve this address.
+
+```
+# Example static IP configuration:
+interface eth0
+static ip_address=10.0.0.3/24
+```
