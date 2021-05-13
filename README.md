@@ -10,7 +10,7 @@ Note: I have yet to figure out how to install openFrameworks on Raspberry OS 64.
 Using OpenCv requires a decent amount of RAM, but I have not been able to fully take advantage of all 8GB of the RPI4, despite numerous attemps. Most of my uses — for example processing full 1280 x 720 HDMI video feeds — seem to work fine with a 4GB Raspberry. I have not tested with 2GB Raspberry 4.
 
 - [Raspberry Pi 4 Model B](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/)
-- [Kubii](https://www.kubii.fr) (France)
+- [Kubii](https://www.kubii.fr) (Kubii, France)
 - [Raspberry Pi 400](https://www.kubii.fr/raspberry-pi-400/3084-kits-raspberry-pi-400-3272496302914.html)
 - [Raspberry Pi 4 Modèle B](https://www.kubii.fr/174-raspberry-pi-4-modele-b)
 - [Compute Module 4](https://www.raspberrypi.org/products/compute-module-4/?variant=raspberry-pi-cm4001000)
@@ -21,11 +21,11 @@ Using OpenCv requires a decent amount of RAM, but I have not been able to fully 
 I have been using the Raspberry Cameras (infrared and standard models) that use the integrated camera interface, as well as the El Gato Camlink 4k capture cards for HDMI capture. I have tried many HDMI capture solutions that convert HDMI signals into the standard interface, including the Auvidea B101 and Chinese knockoffs. So far, no sucess at a stable installation with HDMI > CSI.
 
 - [Camera Module v2](https://www.raspberrypi.org/products/camera-module-v2/)
-- [Camera Module v2 Infrared](https://www.kubii.fr/idees-cadeaux/1654-nouvelle-camera-infrarouge-v2-8mp-kubii-640522710898.html) (France)
+- [Camera Module v2 Infrared](https://www.kubii.fr/idees-cadeaux/1654-nouvelle-camera-infrarouge-v2-8mp-kubii-640522710898.html) (Kubii)
 - [130° Infrared Camera with illumination](https://www.kubii.fr/cameras-accessoires/2333-raspberry-pi-camera-fisheye-grand-angle-5mp-kubii-3272496012561.html)
 - [Elgato Camlink 4k](https://www.elgato.com/fr/cam-link-4k)
 - HDMI to CSI
-  - [HDMI to CSI](https://www.kubii.fr/convertisseurs-adaptateurs-raspberry/3210-adaptateur-hdmi-vers-csi-camera-raspberry-pi-3272496305359.html) (France)
+  - [HDMI to CSI](https://www.kubii.fr/convertisseurs-adaptateurs-raspberry/3210-adaptateur-hdmi-vers-csi-camera-raspberry-pi-3272496305359.html) (Kubii)
   - [Auvidea B101](https://auvidea.eu/b101-hdmi-to-csi-2-bridge-15-pin-fpc/)
     - Raspberry Forum discussing Auvidea setup: [https://www.raspberrypi.org/forums/viewtopic.php?t=216903#p1437501]()
     - [Raspberry Pi 4: OpenCV with Auvidea B101 HDMI to CSI-2 Bridge on Raspbian 10](https://www.youtube.com/watch?v=2In8TEsvMQM) (this got me close, but remains unstable)
@@ -112,4 +112,10 @@ sudo bluetoothctl
 [bluetooth]# trust XX:XX:XX:XX:XX
 [bluetooth]# connect XX:XX:XX:XX:XX
 [bluetooth]# exit
+```
+
+## Update
+```
+sudo apt-get update
+sudo apt-get upgrade
 ```
