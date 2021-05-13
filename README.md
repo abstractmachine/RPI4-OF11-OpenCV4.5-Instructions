@@ -103,7 +103,7 @@ In this order of frequency, I use: French, Swiss French, American, Korean, Chine
 - `3` Interface > `P5` SPI > `YES` (if you do electronic interfaciung stuff over I2C)
 
 ### KMS Graphics Driver
-- `?` > `?` > `KMS Driver enabled`
+- `?` Advanced Options > `?` GL Driver > `KMS Driver enabled`
 
 ### Display
 - `2` Display Options > `D2` Underscan > `YES/NO` (depending on your monitor's handling of the HDMI signal)
@@ -336,9 +336,26 @@ python3
 ```
 
 ## Install openFrameworks 11.2
-Cf. [https://openframeworks.cc/setup/raspberrypi/]()
 
-## Install ofxRPI4Window
+We are following this guide, with some modifications: [https://openframeworks.cc/setup/raspberrypi/raspberry-pi-getting-started/]()
+
+### Download OF 11.2
+
+```
+cd
+wget https://openframeworks.cc/versions/v0.11.2/of_v0.11.2_linuxarmv6l_release.tar.gz
+mkdir openFrameworks
+tar vxfz of_v0.11.2_linuxarmv6l_release.tar.gz -C openFrameworks --strip-components 1
+```
+
+### Install dependencies
+```
+cd /home/pi/openFrameworks/scripts/linux/debian
+sudo ./install_dependencies.sh
+sudo ./install_codecs.sh
+```
+
+### Install ofxRPI4Window
 Before compiling openFrameworks, install ofxRPIWindow.
 
 Cf. [https://github.com/jvcleave/ofxRPI4Window]()
@@ -361,3 +378,9 @@ endif
 
 And comment out `ofSetupOpenGL` in the `ofAppRunner.cpp` file on line #31.
 [https://github.com/openframeworks/openFrameworks/blob/master/libs/openFrameworks/app/ofAppRunner.cpp#L31]()
+
+### Compile openFrameworks
+```
+make Release -C /home/pi/openFrameworks/libs/openFrameworksCompiled/project
+```
+
