@@ -305,3 +305,29 @@ Reboot:
 ```
 $ sudo reboot
 ```
+
+### Verify Installation
+
+```
+python
+```
+
+```
+>>> import cv2
+>>> cv2.__version__
+'4.5.2'
+>>> quit()
+```
+
+```
+python3
+```
+
+```
+>>> import cv2
+>>> cv2.__version__
+'4.5.2'
+>>> quit()
+```
+
+
