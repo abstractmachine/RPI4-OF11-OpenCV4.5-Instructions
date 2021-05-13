@@ -296,7 +296,10 @@ Reset the `swapsize` back to its standard value :
 $ sudo nano /etc/dphys-swapfile
 ```
 
-set `CONF_SWAPSIZE=100` with the Nano text editor
+```
+CONF_SWAPSIZE 100
+#CONF_SWAPSIZE 2048
+```
 
 Reboot:
 ```
