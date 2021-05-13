@@ -1,6 +1,6 @@
 # RPI 4 Installation
 
-These are the steps I've been using recently to build a command-line only Raspberry PI 4 image with openFrameworks 11 and OpenCv 4.5.x. This has been tested with the Raspberry Pi 4b and Compute Module 4.
+These are the steps I've been using recently to build a command-line only Raspberry PI 4 image with openFrameworks 11.2 and OpenCv 4.5.x. This has been tested with the Raspberry Pi 4b and Compute Module 4.
 
 Note: that we will be using raw OpenCV calls, and not depending on the openFrameworks libraries that are out of date and not well maintained. Plus, we want to use "as-is" the latest OpenCv C++ examples found online and in computer vision forums, courses, books, and training guides.
 
@@ -101,6 +101,9 @@ In this order of frequency, I use: French, Swiss French, American, Korean, Chine
 
 ### I2C
 - `3` Interface > `P5` SPI > `YES` (if you do electronic interfaciung stuff over I2C)
+
+### KMS Graphics Driver
+- `?` > `?` > `KMS Driver enabled`
 
 ### Display
 - `2` Display Options > `D2` Underscan > `YES/NO` (depending on your monitor's handling of the HDMI signal)
@@ -331,3 +334,27 @@ python3
 >>> print( cv2.getBuildInformation() )
 >>> quit()
 ```
+
+## Install openFrameworks 11.2
+Cf. [https://openframeworks.cc/setup/raspberrypi/]()
+
+## Install ofxRPI4Window
+Cf. [https://github.com/jvcleave/ofxRPI4Window]()
+
+Change config.linuxarmv6l.default.mk file:
+```
+nano openFrameworks/libs/openFrameworksCompiled/project/linuxarmv6l/config.linuxarmv6l.default.mk
+```
+
+```
+ifeq ($(USE_PI_LEGACY), 1)
+	PLATFORM_DEFINES += TARGET_RASPBERRY_PI_LEGACY
+    $(info using legacy build)
+else
+	# comment this for older EGL windowing. Has no effect if USE_PI_LEGACY is enabled
+	# GLFW seems to provide a more robust window on newer Raspbian releases
+	#USE_GLFW_WINDOW = 1
+endif
+```
+
+
