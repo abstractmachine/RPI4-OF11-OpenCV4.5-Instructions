@@ -316,6 +316,7 @@ python
 >>> import cv2
 >>> cv2.__version__
 '4.5.2'
+>>> print( cv2.getBuildInformation() )
 >>> quit()
 ```
 
@@ -327,7 +328,6 @@ python3
 >>> import cv2
 >>> cv2.__version__
 '4.5.2'
+>>> print( cv2.getBuildInformation() )
 >>> quit()
 ```
-
-
