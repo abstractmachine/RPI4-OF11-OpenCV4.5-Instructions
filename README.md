@@ -10,7 +10,7 @@ Note: I have yet to figure out how to install openFrameworks on Raspberry OS 64.
 Using OpenCv requires a decent amount of RAM, but I have not been able to fully take advantage of all 8GB of the RPI4, despite numerous attemps. Most of my uses — for example processing full 1280 x 720 HDMI video feeds — seem to work fine with a 4GB Raspberry. I have not tested with 2GB Raspberry 4.
 
 - [Raspberry Pi 4 Model B](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/)
-- [Kubii](https://www.kubii.fr) (Kubii, France)
+- [Kubii](https://www.kubii.fr) (France for me), see Raspberry website for local distributors of each product
 - [Raspberry Pi 400](https://www.kubii.fr/raspberry-pi-400/3084-kits-raspberry-pi-400-3272496302914.html)
 - [Raspberry Pi 4 Modèle B](https://www.kubii.fr/174-raspberry-pi-4-modele-b)
 - [Compute Module 4](https://www.raspberrypi.org/products/compute-module-4/?variant=raspberry-pi-cm4001000)
@@ -137,3 +137,32 @@ $ sudo rpi-eeprom-update -a
 $ sudo reboot
 ```
 
+### Dependencies
+Many of following installations are also installed [via openFrameworks](https://github.com/openframeworks/openFrameworks/blob/master/scripts/linux/debian/install_dependencies.sh), but since there is not a 100% overlap, I do all these first.
+
+There are a lot of of `Y`es prompts, so you have to watch the output.
+
+```
+$ sudo apt-get install cmake gfortran
+$ sudo apt-get install libjpeg-dev libtiff-dev libgif-dev
+$ sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev
+$ sudo apt-get install libgtk2.0-dev libcanberra-gtk*
+$ sudo apt-get install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
+$ sudo apt-get install libxvidcore-dev libx264-dev libgtk-3-dev
+$ sudo apt-get install libtbb2 libtbb-dev libdc1394-22-dev libv4l-dev
+$ sudo apt-get install libopenblas-dev libatlas-base-dev libblas-dev
+$ sudo apt-get install libjasper-dev liblapack-dev libhdf5-dev
+$ sudo apt-get install protobuf-compiler
+```
+
+### OpenCV
+I am currently using `4.5.2`. Check for latest releases on [https://github.com/opencv]().
+
+```
+$ cd ~
+$ wget -O opencv.zip https://github.com/opencv/opencv/archive/4.5.2.zip
+$ wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/4.5.2.zip
+
+$ unzip opencv.zip
+$ unzip opencv_contrib.zip
+```
