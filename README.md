@@ -90,7 +90,9 @@ When you get to the command line, open `sudo raspi-config` to start configuring 
 
 ## Overscan Problems
 If you're still having problems with overscan, from the command line, open the editor of the configuration file :
-`sudo nano /boot/config.txt`. Remove `#` symbols to make sure `disable_overscan=0` and uncomment and change values of `overscan_left=-32`, etc. Quit the `nano` text editor by typing the `{ctrl}` + `x` keys > `y` + `{enter}`. And then reboot from the command line with `sudo reboot now`.
+`sudo nano /boot/config.txt`. Remove `#` symbols to make sure `disable_overscan=0` and uncomment and change values of `overscan_left=40`, etc. I have even used negative values in the past. More recent monitors do not usually need overscan and as you can `disable_overscan=1`.
+
+Quit the `nano` text editor by typing the `{ctrl}` + `x` keys > `y` + `{enter}`. And then reboot from the command line with `sudo reboot now`. You might need to `clear` and `{enter}` to see your command prompt.
 
 ## Bluetooth Keyboard
 I like using the Logitech K380 keyboards because they allow easy switching between various devices: PI, Mac, PC, iPad, etc. They come in pink, as well as other colors. They (finally) have all the colors in the French keyboard layout: [https://www.logitech.com/fr-ch/product/multi-device-keyboard-k380?crid=27](). These are very handy in complex art installations that often make it difficult to access the ports. 
