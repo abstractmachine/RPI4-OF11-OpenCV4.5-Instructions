@@ -82,13 +82,25 @@ In this order of frequency, I use: French, Swiss French, American, Korean, Chine
 - `5` Localisation Options > `L3` Keyboard > `Generic 105-Key` (or whatever) > `other` > `French` > Keyboard layout `French` > `default` > `no compose key`
 
 ### Wifi
-- `1` System Options > `S1` Wireless LAN > configure your wifi
+- `1` System > `S1` Wireless LAN > configure your wifi
 
 ### Password
-- `1` System Options > `S3` Password > enter a unique password
+- `1` System > `S3` Password > enter a unique password
 
 ### Autologin
-- `1` System Options > `S5` Boot/Auto-login > `B2` Console Autologin (or `B1` if you want to stay safe)
+- `1` System > `S5` Boot/Auto-login > `B2` Console Autologin (or `B1` if you want to stay safe)
+
+### Camera
+- `3` Interface > `P1` Camera > `YES`
+
+### SSH
+- `3` Interface > `P2` SSH > `YES` (make sure you set a good password)
+
+### SPI
+- `3` Interface > `P4` SPI > `YES` (if you do electronic interfaciung stuff over SPI)
+
+### I2C
+- `3` Interface > `P5` SPI > `YES` (if you do electronic interfaciung stuff over I2C)
 
 ### Display
 - `2` Display Options > `D2` Underscan > `YES/NO` (depending on your monitor's handling of the HDMI signal)
@@ -119,6 +131,23 @@ sudo bluetoothctl
 [bluetooth]# trust XX:XX:XX:XX:XX
 [bluetooth]# connect XX:XX:XX:XX:XX
 [bluetooth]# exit
+```
+
+## Connect Via SSH
+To control your Raspberry from your Mac, Windows or Linux computer, find your Raspberry's IP address by typing `ifconfig` on the command line of the Raspberry Pi. You'll find your Ethernet, localhost, and Wifi addresses listed as `inet 192.168.#.###` with actual numbers instead of `###`.
+
+For example, on a Mac, open the **Terminal** (`{command}` + `{space}` + `Terminal`) and connect via SSH:
+
+```
+ssh pi@192.168.#.###
+```
+
+Enter the `password` of the Raspberry Pi and you are now controlling the PI from the Terminal of your personal computer. This is easier for some commands, for example the long list of `CMAKE` commands below.
+
+If you have an error similar to `WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!` you might need to remove your IP address from the "known hosts" file. To remove my "known hosts" file I remove the line containing the offending IP address from VS Code on my Mac:
+
+```
+code /Users/abstractmachine/.ssh/known_hosts
 ```
 
 ## Update
@@ -185,6 +214,7 @@ We need to install `pip`, because it isn't installed on "Lite" versions of Raspb
 ```
 $ sudo apt-get install python-pip
 $ pip install numpy
+$ export PATH=/home/pi/.local/bin:$PATH
 ```
 
 ### Make
@@ -221,3 +251,6 @@ $ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 -D OPENCV_GENERATE_PKGCONFIG=ON \
 -D BUILD_EXAMPLES=OFF ..
 ```
+
+Make sure to include the `..` at the end.
+
