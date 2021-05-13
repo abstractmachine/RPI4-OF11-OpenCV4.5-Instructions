@@ -361,6 +361,13 @@ Before compiling openFrameworks, install ofxRPIWindow.
 
 Cf. [https://github.com/jvcleave/ofxRPI4Window]()
 
+Go into the `addons` folder and clone the this addon:
+
+```
+cd /home/pi/openFrameworks/addons
+git clone https://github.com/jvcleave/ofxRPI4Window.git
+```
+
 Change config.linuxarmv6l.default.mk file:
 ```
 nano openFrameworks/libs/openFrameworksCompiled/project/linuxarmv6l/config.linuxarmv6l.default.mk
@@ -394,5 +401,13 @@ make
 make run
 ```
 
-### Create an OpenCV + ofxOsc Capable project
+### Add the ofxGPIO addon
+```
+cd /home/pi/openFrameworks/addons
+git clone https://github.com/kashimAstro/ofxGPIO.git
+```
+
+### Create an OpenCV + ofxOsc + ofxGPIO Capable project
+This project will turn on a GPIO pin, send out a "hello" message via the OSC (OpenSoundControl) protocol, and capture/display the feed from a video input. If this project compiles and runs, we're finally in a good place to hunker down and get to work.
+
 *To be continued*
