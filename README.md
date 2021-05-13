@@ -254,3 +254,51 @@ $ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 
 Make sure to include the `..` at the end.
 
+Increase the `swapfile` settings temporarily:
+
+```
+sudo nano /etc/dphys-swapfile
+```
+
+Change this line
+```
+#CONF_SWAPSIZE 100
+CONF_SWAPSIZE 2048
+```
+
+Leave `nano` with `{ctrl}` + `x` > `Y` + `{enter}`.
+
+From the command line, restart the swapfile service thingamajig with this new value:
+
+```
+$ sudo /etc/init.d/dphys-swapfile stop
+$ sudo /etc/init.d/dphys-swapfile start
+```
+
+Now we can finally make our build:
+
+```
+$ make -j4
+```
+
+And now that we've built it, install it:
+
+```
+$ sudo make install
+$ sudo ldconfig
+# cleaning (frees 300 KB)
+$ make clean
+$ sudo apt-get update
+```
+
+Reset the `swapsize` back to its standard value :
+```
+$ sudo nano /etc/dphys-swapfile
+```
+
+set `CONF_SWAPSIZE=100` with the Nano text editor
+
+Reboot:
+```
+$ sudo reboot
+```
