@@ -169,4 +169,55 @@ $ wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/4.
 
 $ unzip opencv.zip
 $ unzip opencv_contrib.zip
+
+$ rm opencv.zip
+$ rm opencv_contrib.zip
+
+$ mv opencv-4.5.2 opencv
+$ mv opencv_contrib-4.5.2 opencv_contrib
+```
+
+### Python
+Since we're on a Raspberry that will probably be single-use, I'm not installing a virtual environment. This is a bad idea on a personal computer that you use for multiple projects.
+
+We need to install `pip`, because it isn't installed on "Lite" versions of Raspberry OS.
+
+```
+$ sudo apt-get install python-pip
+$ pip install numpy
+```
+
+### Make
+
+```
+$ cd ~/opencv/
+$ mkdir build
+$ cd build
+```
+
+```
+$ cmake -D CMAKE_BUILD_TYPE=RELEASE \
+-D CMAKE_INSTALL_PREFIX=/usr/local \
+-D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules \
+-D ENABLE_NEON=ON \
+-D ENABLE_VFPV3=ON \
+-D WITH_OPENMP=ON \
+-D WITH_OPENCL=OFF \
+-D BUILD_TIFF=ON \
+-D WITH_FFMPEG=ON \
+-D WITH_TBB=ON \
+-D BUILD_TBB=ON \
+-D BUILD_TESTS=OFF \
+-D WITH_EIGEN=OFF \
+-D WITH_GSTREAMER=ON \
+-D WITH_V4L=ON \
+-D WITH_LIBV4L=ON \
+-D WITH_VTK=OFF \
+-D WITH_QT=OFF \
+-D OPENCV_ENABLE_NONFREE=ON \
+-D INSTALL_C_EXAMPLES=OFF \
+-D INSTALL_PYTHON_EXAMPLES=OFF \
+-D BUILD_opencv_python3=TRUE \
+-D OPENCV_GENERATE_PKGCONFIG=ON \
+-D BUILD_EXAMPLES=OFF ..
 ```
