@@ -95,7 +95,7 @@ If you're still having problems with overscan, from the command line, open the e
 Quit the `nano` text editor by typing the `{ctrl}` + `x` keys > `y` + `{enter}`. And then reboot from the command line with `sudo reboot now`. You might need to `clear` and `{enter}` to see your command prompt.
 
 ## Bluetooth Keyboard
-I like using the Logitech K380 keyboards because they allow easy switching between various devices: PI, Mac, PC, iPad, etc. They come in pink, as well as other colors. They (finally) have all the colors in the French keyboard layout: [https://www.logitech.com/fr-ch/product/multi-device-keyboard-k380?crid=27](). These are very handy in complex art installations that often make it difficult to access the ports. 
+I like using the Logitech K380 keyboards because they allow easy switching between various devices: PI, Mac, PC, iPad, etc. They come in pink, as well as other, less important, colors. They (finally) have all the colors in the French keyboard layout: [https://www.logitech.com/fr-ch/product/multi-device-keyboard-k380?crid=27](). These are very handy in complex art installations that often make it difficult to access the ports. 
 
 To pair a bluetooth keyboard, you need put your keyboard into pairing mode, then to go into `bluetoothctl`, `scan` the bluetooth controller for available bluetooth devices identifiers, find your device, turn off scan, and then `pair`, `trust`, and `connect` your device.
 
@@ -119,3 +119,16 @@ sudo bluetoothctl
 sudo apt-get update
 sudo apt-get upgrade
 ```
+
+## Install OpenCV
+This suite of commands is entirely based on the Q-Engineering OpenCV Installation guides: [https://qengineering.eu/install-opencv-4.5-on-raspberry-pi-4.html](). These guides are amazingly detailed with information that I will not reproduce here.
+
+### Check eprom update
+```
+# to get the current status
+$ sudo rpi-eeprom-update
+# if needed, to update the firmware
+$ sudo rpi-eeprom-update -a
+$ sudo reboot
+```
+
