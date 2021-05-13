@@ -98,10 +98,10 @@ In this order of frequency, I use: French, Swiss French, American, Korean, Chine
 - `3` Interface > `P2` SSH > `YES` (make sure you set a good password)
 
 ### SPI
-- `3` Interface > `P4` SPI > `YES` (if you do electronic interfaciung stuff over SPI)
+- `3` Interface > `P4` SPI > `YES` (if you do electronic interfacing stuff over SPI)
 
 ### I2C
-- `3` Interface > `P5` SPI > `YES` (if you do electronic interfaciung stuff over I2C)
+- `3` Interface > `P5` SPI > `YES` (if you do electronic interfacing stuff over I2C)
 
 ### KMS Graphics Driver
 - `?` Advanced Options > `?` GL Driver > `KMS Driver enabled`
