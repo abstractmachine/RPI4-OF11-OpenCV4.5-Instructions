@@ -194,6 +194,7 @@ $ sudo apt-get install protobuf-compiler
 ```
 $ sudo apt-get install python3-dev python3-numpy python3-pip
 $ sudo apt-get install python-dev python-numpy
+```
 
 ### OpenCV
 I am currently using `4.5.2`. Check for latest releases on [https://github.com/opencv]().
