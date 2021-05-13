@@ -76,19 +76,24 @@ Tip: if you can't see your command line because of overscan, once you are logged
 
 When you get to the command line, open `sudo raspi-config` to start configuring your installation
 
-- Keyboard
-  - `5` Localisation Options > `L3` Keyboard > `Generic 105-Key` (or whatever) > `other` > `French` > Keyboard layout `French` > `default` > `no compose key`
-- Wifi
-  - `1` System Options > `S1` Wireless LAN > configure your wifi
-- Password
-  - `1` System Options > `S3` Password > enter a unique password
-- Autologin
-  - `1` System Options > `S5` Boot/Auto-login > `B2` Console Autologin (or `B1` if you want to stay safe)
-- Display
-  - `2` Display Options > `D2` Underscan > `YES/NO` (depending on your monitor's handling of the HDMI signal)
-- `Finish` to exit this menu to the command line
+### Keyboard
+`5` Localisation Options > `L3` Keyboard > `Generic 105-Key` (or whatever) > `other` > `French` > Keyboard layout `French` > `default` > `no compose key`
 
-## Overscan Problems
+### Wifi
+  - `1` System Options > `S1` Wireless LAN > configure your wifi
+
+### Password
+  - `1` System Options > `S3` Password > enter a unique password
+
+### Autologin
+  - `1` System Options > `S5` Boot/Auto-login > `B2` Console Autologin (or `B1` if you want to stay safe)
+
+### Display
+  - `2` Display Options > `D2` Underscan > `YES/NO` (depending on your monitor's handling of the HDMI signal)
+
+`Finish` to exit this menu to the command line
+
+### Overscan Problems
 If you're still having problems with overscan, from the command line, open the editor of the configuration file :
 `sudo nano /boot/config.txt`. Remove `#` symbols to make sure `disable_overscan=0` and uncomment and change values of `overscan_left=40`, etc. I have even used negative values in the past. More recent monitors do not usually need overscan and as you can `disable_overscan=1`.
 
