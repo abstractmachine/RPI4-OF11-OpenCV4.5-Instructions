@@ -18,12 +18,17 @@ Using OpenCv requires a decent amount of RAM, but I have not been able to fully 
   - [How to Make a Raspberry Pi Compute Module 4 Carrier Board in KiCad](https://www.youtube.com/watch?v=ypcPJC_umPQ)
 
 ## Capture Device
-- I have been using the Raspberry Cameras (infrared and standard models) that use the integrated camera interface, as well at the El Gato Camlink 4k capture cards for HDMI capture. I have tried many HDMI capture solutions that convert HDMI signals into the standard interface, including the Auvidea B101 and Chinese knockoffs. So far, no sucess at a stable installation with HDMI > CSI.
+I have been using the Raspberry Cameras (infrared and standard models) that use the integrated camera interface, as well at the El Gato Camlink 4k capture cards for HDMI capture. I have tried many HDMI capture solutions that convert HDMI signals into the standard interface, including the Auvidea B101 and Chinese knockoffs. So far, no sucess at a stable installation with HDMI > CSI.
 
 - [Camera Module v2](https://www.raspberrypi.org/products/camera-module-v2/)
 - [Camera Module v2 Infrared](https://www.kubii.fr/idees-cadeaux/1654-nouvelle-camera-infrarouge-v2-8mp-kubii-640522710898.html) (France)
 - [130° Infrared Camera with illumination](https://www.kubii.fr/cameras-accessoires/2333-raspberry-pi-camera-fisheye-grand-angle-5mp-kubii-3272496012561.html)
 - [Elgato Camlink 4k](https://www.elgato.com/fr/cam-link-4k)
+- HDMI to CSI
+  - [HDMI to CSI](https://www.kubii.fr/convertisseurs-adaptateurs-raspberry/3210-adaptateur-hdmi-vers-csi-camera-raspberry-pi-3272496305359.html) (France)
+  - [Auvidea B101](https://auvidea.eu/b101-hdmi-to-csi-2-bridge-15-pin-fpc/)
+    - Raspberry Forum discussing Auvidea setup: [https://www.raspberrypi.org/forums/viewtopic.php?t=216903#p1437501]()
+    - [Raspberry Pi 4: OpenCV with Auvidea B101 HDMI to CSI-2 Bridge on Raspbian 10](https://www.youtube.com/watch?v=2In8TEsvMQM) (this got me close, but remains unstable)
 
 ## Screen
 Touch screens are handy for installations, or for the final project. There are official, and stuff from China that works but with wonky resolution stretching and that cannot always be (easily) configured.
@@ -37,7 +42,7 @@ Start with a blank SD card.
 
 - Tests
   - [Raspberry PI Micro SD Cards](https://www.tomshardware.com/best-picks/raspberry-pi-microsd-cards)
-- Current cards:
+- Current cards I've been using:
   - [SanDisk MAX ENDURANCE microSDHC](https://www.amazon.fr/dp/B084CJ96GT)
   - [SanDisk Ultra MicroSDHC](https://www.amazon.fr/gp/product/B073K14CVB)
 
