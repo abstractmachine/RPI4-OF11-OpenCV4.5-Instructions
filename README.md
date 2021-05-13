@@ -77,19 +77,19 @@ Tip: if you can't see your command line because of overscan, once you are logged
 When you get to the command line, open `sudo raspi-config` to start configuring your installation
 
 ### Keyboard
-`5` Localisation Options > `L3` Keyboard > `Generic 105-Key` (or whatever) > `other` > `French` > Keyboard layout `French` > `default` > `no compose key`
+- `5` Localisation Options > `L3` Keyboard > `Generic 105-Key` (or whatever) > `other` > `French` > Keyboard layout `French` > `default` > `no compose key`
 
 ### Wifi
-  - `1` System Options > `S1` Wireless LAN > configure your wifi
+- `1` System Options > `S1` Wireless LAN > configure your wifi
 
 ### Password
-  - `1` System Options > `S3` Password > enter a unique password
+- `1` System Options > `S3` Password > enter a unique password
 
 ### Autologin
-  - `1` System Options > `S5` Boot/Auto-login > `B2` Console Autologin (or `B1` if you want to stay safe)
+- `1` System Options > `S5` Boot/Auto-login > `B2` Console Autologin (or `B1` if you want to stay safe)
 
 ### Display
-  - `2` Display Options > `D2` Underscan > `YES/NO` (depending on your monitor's handling of the HDMI signal)
+- `2` Display Options > `D2` Underscan > `YES/NO` (depending on your monitor's handling of the HDMI signal)
 
 `Finish` to exit this menu to the command line
 
