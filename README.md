@@ -65,16 +65,31 @@ Download either the Raspberry Pi with Desktop, or the Lite. You can directly dow
 - Plug in a USB Keyboard
 
 ## Configure PI
-- On first boot, the PI should resize the volume to match the card size
+On first boot, the PI should resize the volume to match the card size
+
 - login: `pi`
 - password: `raspberry`
-  - Note: on French keyboard `q` and `a` keys will be inverted. We'll fix keyboard configuration in next steps
-- Tip: if you can't see your command line because of overscan, once you are logged in type `clear` and `{enter}` a few times. We'll fix over/underscan in next steps
-- When you get to the command line, open `sudo raspi-config` to start configuring your installation
+
+Note: on French keyboards `q` and `a` keys will be inverted. We'll fix keyboard configuration in next steps
+  
+Tip: if you can't see your command line because of overscan, once you are logged in type `clear` and `{enter}` a few times. We'll fix over/underscan in next steps.
+
+When you get to the command line, open `sudo raspi-config` to start configuring your installation
+
 - Keyboard
   - `5` Localisation Options > `L3` Keyboard > `Generic 105-Key` (or whatever) > `other` > `French` > Keyboard layout `French` > `default` > `no compose key`
+- Wifi
+  - `1` System Options > `S1` Wireless LAN > configure your wifi
+- Password
+  - `1` System Options > `S3` Password > enter a unique password
+- Autologin
+  - `1` System Options > `S5` Boot/Auto-login > `B2` Console Autologin (or `B1` if you want to stay safe)
 - Display
   - `2` Display Options > `D2` Underscan > `YES/NO` (depending on your monitor's handling of the HDMI signal)
+- `Finish` to exit this menu to the command line
+
+If you're still having problems with overscan, from the command line, open the editor of the configuration file :
+`sudo nano /boot/config.txt`. Remove `#` symbols to make sure `disable_overscan=0` and uncomment and change values of `overscan_left=-32`, etc. Quit the `nano` text editor by typing the `{ctrl}` + `x` keys > `y` + `{enter}`. And then reboot from the command line with `sudo reboot now`.
 
 ## Bluetooth Keyboard
 I like using the Logitech K380 keyboards because they allow easy switching between various devices: PI, Mac, PC, iPad, etc. They come in pink, as well as other colors. They (finally) have all the colors in the French keyboard layout: [https://www.logitech.com/fr-ch/product/multi-device-keyboard-k380?crid=27](). These are very handy in complex art installations that often make it difficult to access the ports. 
