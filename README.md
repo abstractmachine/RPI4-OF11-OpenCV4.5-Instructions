@@ -47,6 +47,8 @@ Start with a blank SD card.
   - [SanDisk Ultra MicroSDHC](https://www.amazon.fr/gp/product/B073K14CVB)
 
 ## Download Raspberry PI OS Lite
+Download either the Raspberry Pi with Desktop, or the Lite. You can directly download and install these images from the official Pi Imager software in the next step.
+
 - [https://www.raspberrypi.org/software/operating-systems/]()
 - This how-to uses the following image from 2021-03-04:
   - [https://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-2021-03-25/2021-03-04-raspios-buster-armhf-lite.zip]()
@@ -63,7 +65,16 @@ Start with a blank SD card.
 - Plug in a USB Keyboard
 
 ## Configure PI
-
+- On first boot, the PI should resize the volume to match the card size
+- login: `pi`
+- password: `raspberry`
+  - Note: on French keyboard `q` and `a` keys will be inverted. We'll fix keyboard configuration in next steps
+- Tip: if you can't see your command line because of overscan, once you are logged in type `clear` and `{enter}` a few times. We'll fix over/underscan in next steps
+- When you get to the command line, open `sudo raspi-config` to start configuring your installation
+- Keyboard
+  - `5` Localisation Options > `L3` Keyboard > `Generic 105-Key` (or whatever) > `other` > `French` > Keyboard layout `French` > `default` > `no compose key`
+- Display
+  - `2` Display Options > `D2` Underscan > `YES/NO` (depending on your monitor's handling of the HDMI signal)
 
 ## Bluetooth Keyboard
 I like using the Logitech K380 keyboards because they allow easy switching between various devices: PI, Mac, PC, iPad, etc. They come in pink, as well as other colors. They (finally) have all the colors in the French keyboard layout: [https://www.logitech.com/fr-ch/product/multi-device-keyboard-k380?crid=27](). These are very handy in complex art installations that often make it difficult to access the ports. 
