@@ -158,6 +158,8 @@ $ sudo apt-get install protobuf-compiler
 ### OpenCV
 I am currently using `4.5.2`. Check for latest releases on [https://github.com/opencv]().
 
+Note: `-O` is the letter `O` for [`--output-document`](https://www.gnu.org/software/wget/manual/wget.html#Download-Options) and not the number zero.
+
 ```
 $ cd ~
 $ wget -O opencv.zip https://github.com/opencv/opencv/archive/4.5.2.zip
