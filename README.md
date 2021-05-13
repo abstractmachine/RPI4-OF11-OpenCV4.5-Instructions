@@ -95,7 +95,7 @@ When you get to the command line, open `sudo raspi-config` to start configuring 
 
 ### Overscan Problems
 If you're still having problems with overscan, from the command line, open the editor of the configuration file :
-`sudo nano /boot/config.txt`. Remove `#` symbols to make sure `disable_overscan=0` and uncomment and change values of `overscan_left=40`, etc. I have even used negative values in the past. More recent monitors do not usually need overscan and as you can `disable_overscan=1`.
+`sudo nano /boot/config.txt`. Remove `#` symbols to make sure `#disable_overscan=0` (yes, this is the de-activation of a negative, yes all this is impossibly inelegant) and un-comment to change values of `overscan_left=40`, etc. I have sometimes used negative values in the past. More recent monitors do not usually need overscan and as you can `disable_overscan=1`.
 
 Quit the `nano` text editor by typing the `{ctrl}` + `x` keys > `y` + `{enter}`. And then reboot from the command line with `sudo reboot now`. You might need to `clear` and `{enter}` to see your command prompt.
 
