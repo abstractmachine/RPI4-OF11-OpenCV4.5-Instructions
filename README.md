@@ -74,6 +74,7 @@ Note: on French keyboards `q` and `a` keys will be inverted. We'll fix keyboard 
   
 Tip: if you can't see your command line because of overscan, once you are logged in type `clear` and `{enter}` a few times. We'll fix over/underscan in next steps.
 
+### raspi-config
 When you get to the command line, open `sudo raspi-config` to start configuring your installation
 
 ### Keyboard
