@@ -18,7 +18,7 @@ Using OpenCv requires a decent amount of RAM, but I have not been able to fully 
   - [How to Make a Raspberry Pi Compute Module 4 Carrier Board in KiCad](https://www.youtube.com/watch?v=ypcPJC_umPQ)
 
 ## Capture Device
-I have been using the Raspberry Cameras (infrared and standard models) that use the integrated camera interface, as well as the El Gato Camlink 4k capture cards for HDMI capture. I have tried many HDMI capture solutions that convert HDMI signals into the standard interface, including the Auvidea B101 and Chinese knockoffs. So far, no sucess at a stable installation with HDMI > CSI.
+I have been using the Raspberry Cameras (infrared and standard models) that use the integrated camera interface, as well as the Elgato Camlink 4k capture cards for HDMI capture. I have tried many HDMI capture solutions that convert HDMI signals into the standard interface, including the Auvidea B101 and Chinese knockoffs. So far, no sucess at a stable installation with HDMI > CSI.
 
 - [Camera Module v2](https://www.raspberrypi.org/products/camera-module-v2/)
 - [Camera Module v2 Infrared](https://www.kubii.fr/idees-cadeaux/1654-nouvelle-camera-infrarouge-v2-8mp-kubii-640522710898.html) (Kubii)
