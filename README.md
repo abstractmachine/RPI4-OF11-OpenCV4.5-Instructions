@@ -307,7 +307,7 @@ CONF_SWAPSIZE 100
 
 Reboot:
 ```
-$ sudo reboot
+$ sudo reboot now
 ```
 
 ### Verify Installation
