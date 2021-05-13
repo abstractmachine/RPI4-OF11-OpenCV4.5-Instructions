@@ -31,7 +31,7 @@ I have been using the Raspberry Cameras (infrared and standard models) that use 
     - [Raspberry Pi 4: OpenCV with Auvidea B101 HDMI to CSI-2 Bridge on Raspbian 10](https://www.youtube.com/watch?v=2In8TEsvMQM) (this got me close, but remains unstable)
 
 ## Screen
-Touch screens are handy for installations, or for the final project. There are official, and stuff from China that works but with wonky resolution stretching and that cannot always be (easily) configured.
+Touch screens are handy for installations, or for the final project. There are official screens, and stuff from China that works but with wonky resolution stretching and that cannot always be (easily) configured.
 
 - [Official 7" Screen](https://www.kubii.fr/ecrans-afficheurs/1131-ecran-tactile-officiel-7-800x480-kubii-640522710829.html)
 - [3.5" Screen](https://www.amazon.fr/dp/B08HVDLHRW/)
@@ -48,10 +48,23 @@ Start with a blank SD card.
 
 ## Download Raspberry PI OS Lite
 - [https://www.raspberrypi.org/software/operating-systems/]()
+- This how-to uses the following image from 2021-03-04:
+  - [https://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-2021-03-25/2021-03-04-raspios-buster-armhf-lite.zip]()
+  - [https://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-2021-03-25/2021-03-04-raspios-buster-armhf-lite.zip.torrent]() (Torrent)
 
 ## Install onto SD Card
-- [https://www.raspberrypi.org/software/]()
+- [Raspberry Pi Imager](https://www.raspberrypi.org/software/)
+- [Balena Etcher](https://www.balena.io/etcher/)
+
+## Turn On
+- Install SD Card
+- Plug in an HMDI monitor before powering on
+- Power using a compatible USB-C adapter. There is a bug with the RPI 4's USB-C power plug design, so be careful to use not just any adapter. There are cheap adapters out there.
+- Plug in a USB Keyboard
 
 ## Configure PI
-- 
+
+
+## Bluetooth Keyboard
+I like using the Logitech K380 keyboards because they allow easy switching between various devices: PI, Mac, PC, iPad, etc. They come in pink, as well as other colors. They (finally) have all the colors in the French keyboard layout: [https://www.logitech.com/fr-ch/product/multi-device-keyboard-k380?crid=27](). These are very handy in complex art installations that often make it difficult to access the ports. 
 
