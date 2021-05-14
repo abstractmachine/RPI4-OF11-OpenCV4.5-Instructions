@@ -4,6 +4,8 @@ These are the steps I've been using recently to build a command-line only Raspbe
 
 Note: that we will be using raw OpenCV calls, and not depending on the openFrameworks libraries that are out of date and not well maintained. Plus, we want to use "as-is" the latest OpenCv C++ examples found online and in computer vision forums, courses, books, and training guides.
 
+You will find a lot of the latest neural network fancy fancy is mostly written in Python; but more and more is available in C++, especially for people working with smaller "on the edge" machine learning such as us and our Raspberry Pi configuration. OpenCV does not have all the latest Deep Learning integrated, but it has a lot that you can work with and has accelerated integration of neural network code over the past few years. If you are interrested in this aspect, a good starting poing is here: [](https://github.com/spmallick/learnopencv)
+
 Note: I have yet to figure out how to install openFrameworks on Raspberry OS 64. According to Q-Engineering, you can get significant speed increases with 64-bit Raspberry OS, so I will have to figure this out at some time. Cf. [](https://qengineering.eu/install-opencv-4.5-on-raspberry-64-os.html)
 
 ## Raspberry Pi 4
@@ -95,7 +97,7 @@ In this order of frequency, I use: French, Swiss French, American, Korean, Chine
 - `3` Interface > `P1` Camera > `YES`
 
 ### SSH
-- `3` Interface > `P2` SSH > `YES` (make sure you set a good password)
+- `3` Interface > `P2` SSH > `YES` (make sure you set a good password in the previous steps)
 
 ### SPI
 - `3` Interface > `P4` SPI > `YES` (if you do electronic interfacing stuff over SPI)
