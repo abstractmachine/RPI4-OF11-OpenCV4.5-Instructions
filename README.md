@@ -372,7 +372,7 @@ make Release -C /home/pi/openFrameworks/libs/openFrameworksCompiled/project
 ### Install ofxRPI4Window
 After compiling openFrameworks, install ofxRPIWindow.
 
-We are using the "lite", command-line only version of Raspberry. Currently, if you want to run an openFrameworks designed app from the command line on Raspberry PI 4 without the "windowed" version installed, you need to use ofxRPI4Window as a starting point instead of the standard openFrameworks examples — for example the `empty` example. Currently, this addons does not have any keyboard implementation, which is fine for our uses because we'll be using the `GPIO` pins for input/output, similar to how we would work with an Arduino board.
+We are using the "lite", command-line only version of Raspberry OS. Currently, if you want to run an openFrameworks designed app from the command line on Raspberry PI 4 without the "windowed" version installed, you need to use ofxRPI4Window as a starting point instead of the standard openFrameworks examples — for example the `empty` example. Currently, this addons does not have any keyboard implementation, which is fine for our uses because we'll be using the `GPIO` pins for input/output, similar to how we would work with an Arduino board.
 
 Cf. [ofxRPI4Window](https://github.com/jvcleave/ofxRPI4Window)
 
@@ -426,11 +426,8 @@ cd /home/pi/openFrameworks/addons
 git clone https://github.com/kashimAstro/ofxGPIO.git
 ```
 
-## Create an OpenCV + ofxOsc + ofxGPIO Capable Project
-This project will turn on a GPIO pin, send out a "hello" message via the OSC (OpenSoundControl) protocol, and capture/display the feed from a video input. If this project compiles and runs, we're finally in a good place to hunker down and get to work.
-
-### Create An Empty Window Skeleton
-We are going to start with one of the smaller examples from ofxRPI4Window, which we will copy (and rename) into our `myApps` folder and rewrite as our new "bare bones" skeleton project.
+## Create Skeleton
+We need an empty "skeleton" project from which to start each project. We are going to start with one of the smaller examples from ofxRPI4Window, which we will copy (and rename) into our `myApps` folder and rewrite as our new "bare bones" skeleton project.
 
 First, remove the current `empty` folder.
 
@@ -499,6 +496,29 @@ void ofApp::update() {
 void ofApp::draw() {
 	
 }
+```
+
+### Run EmptyWindow
+Let's test to see if our skeleton project works.
+
+```
+$ cd ..
+# We should now be in the `EmptyWindow` folder
+$ make && make run
+```
+
+We should see an empty screen with a gray background. This is our new skeleton `EmptyWindow` project.
+
+Press `{ctrl}` + `c` to quit this app.
+
+## Create an OpenCV + ofxOsc + ofxGPIO Capable Project
+This project will turn on a GPIO pin, send out a "hello" message via the OSC (OpenSoundControl) protocol, and capture/display the feed from a video input. If this project compiles and runs, we're finally in a good place to hunker down and get to work.
+
+### Copy Skeleton
+Copy our skeleton into our new `ComputerVision` project
+
+```
+cp -R /home/pi/openFrameworks/apps/myApps/EmptyWindow /home/pi/openFrameworks/apps/myApps/ComputerVision
 ```
 
 ## Auto-start An App After Boot
