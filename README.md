@@ -407,7 +407,8 @@ $ nano /home/pi/openFrameworks/libs/openFrameworks/app/ofAppRunner.cpp
 Add `/*` ... `*/` around the entire `ofSetupOpenGL()` method
 
 ### Compile First App
-We are not using the openFrameworks examples, because we need to use the ofxRPI4Window instead
+For some reason that I have yet to figure out, we first need to complite a standard non-ofxRPI4Window app, and try to run it, *then* after that fail, compile an ofxRPI4Window example and run it.
+
 ```
 cp -R /home/pi/openFrameworks/addons/ofxRPI4Window/example-billboard /home/pi/openFrameworks/apps/myApps/example-billboard
 cd /home/pi/openFrameworks/apps/myApps/example-billboard
