@@ -542,8 +542,10 @@ ofxOpenCv
 
 This will activate the `ofxRPI4Window`, `ofxOsc`, `ofxGPIO`, `ofxOpenCv` addons to our project.
 
+Note: The `ofxOpenCv` addon is just me being lazy. I haven't spent the time going through all its declarations that allow `openFrameworks` to link up to OpenCV. Despite this, we will be using "raw" OpenCV commands.
+
 ### Add Basic CV Code
-Let's write a simple computer capture example.
+Let's write a simple computer vision capture example that captures the video input and displays it on the screen.
 
 `ofApp.h`
 
@@ -590,7 +592,7 @@ void ofApp::setup(){
 	ofBackground(128);
 
 	// open default camera
-	capture.open("/dev/video1", cv::CAP_V4L2);
+	capture.open(0, cv::CAP_V4L2);
 	// set the width and height
 	capture.set(cv::CAP_PROP_FRAME_WIDTH, captureSize.width);
 	capture.set(cv::CAP_PROP_FRAME_HEIGHT, captureSize.height);
@@ -677,7 +679,7 @@ It's the third on the list, I need to call this video by it's name `dev/video0`.
 If we look directly in the [OpenCV Video Capture Class documentation](https://docs.opencv.org/3.4/d8/dfe/classcv_1_1VideoCapture.html), we see that [we can specify the name of the input capture source](https://docs.opencv.org/3.4/d8/dfe/classcv_1_1VideoCapture.html#af3b71a7c0c459704ed75568a01290457). So let's try that:
 
 ```
-
+capture.open("dev/video0", cv::CAP_V4L2);
 ```
  
 ## Auto-start An App After Boot
