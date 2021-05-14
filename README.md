@@ -537,8 +537,119 @@ Here are the contents of my `addons.make` file:
 ofxRPI4Window
 ofxOsc
 ofxGPIO
+ofxOpenCv
 ```
 
+This will activate the `ofxRPI4Window`, `ofxOsc`, `ofxGPIO`, `ofxOpenCv` addons to our project.
+
+### Add Basic CV Code
+Let's write a simple computer capture example.
+
+`ofApp.h`
+```
+#pragma once
+
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui.hpp>
+#include <opencv2/imgproc.hpp>
+#include "opencv2/objdetect.hpp"
+#include <opencv2/ml.hpp>
+
+#include "ofMain.h"
+
+class ofApp : public ofBaseApp{
+	
+public:
+	void setup();
+	void update();
+	void draw();
+
+	// the connection to the capture device
+	cv::VideoCapture capture;
+	// the frame we've captured
+	cv::Mat frame;
+	// for visualizing in openFrameworks
+	ofTexture captureTexture;
+	// our desired size
+	cv::Size captureSize = cv::Size(1280, 720);
+	// our desired framerate
+	int captureFramesPerSecond = 60;
+
+};
+```
+
+`ofApp.cpp`
+```
+
+#include "ofApp.h"
+
+void ofApp::setup(){
+	ofBackground(128);
+
+	// open default camera
+	capture.open(0, cv::CAP_V4L2);
+	// set the width and height
+	capture.set(cv::CAP_PROP_FRAME_WIDTH, captureSize.width);
+	capture.set(cv::CAP_PROP_FRAME_HEIGHT, captureSize.height);
+	capture.set(cv::CAP_PROP_FPS, captureFramesPerSecond);
+	capture.set(cv::CAP_PROP_CONVERT_RGB, true);
+
+	// what we wanted might be different from what we got
+	captureSize.width = capture.get(cv::CAP_PROP_FRAME_WIDTH);
+	captureSize.height = capture.get(cv::CAP_PROP_FRAME_HEIGHT);
+	captureFramesPerSecond = capture.get(cv::CAP_PROP_FPS);
+
+	// if we successfully opened the camera stream
+	if (capture.isOpened())
+	{
+		// now that we know the size, we can allocate a texture with this size
+		captureTexture.allocate(captureSize.width, captureSize.height, GL_LUMINANCE);
+	}
+}
+
+
+void ofApp::update() {
+	// if capture was successfully opened
+	if (capture.isOpened())
+	{
+		// if we sucessfully grabbed a new frame
+		if (capture.grab())
+		{
+			// populate that frame
+			capture.read(frame);
+			// if we have a frame with content
+			if (!frame.empty())
+			{
+				// process the image here
+			}
+			// if (!empty)
+		}
+		// if (grab)
+	}
+	// if (isOpened)
+}
+
+
+void ofApp::draw() {
+	if (!frame.empty())
+	{
+		// we use this texture to show what we're seeing
+		unsigned int luminanceType = frame.channels() == 3 ? GL_RGB : GL_LUMINANCE;
+		captureTexture.loadData(frame.ptr(), frame.cols, frame.rows, luminanceType);
+		ofSetColor(255, 255, 255);
+		captureTexture.draw(0, 0, ofGetWidth(), ofGetHeight());
+	}
+}
+
+
+```
+
+After those two changes, plug in a camera or capture device, and test the code:
+
+```
+$ make && make run
+```
+ 
 ## Auto-start An App After Boot
 
 We are going to use `systemd` to auto-start an app. This requires creating a script and then loading that script into `systemctl`.
