@@ -397,7 +397,7 @@ And comment out `ofSetupOpenGL` in the `ofAppRunner.cpp` file on line #31.
 $ nano /home/pi/openFrameworks/libs/openFrameworks/app/ofAppRunner.cpp
 ```
 
-[https://github.com/openframeworks/openFrameworks/blob/master/libs/openFrameworks/app/ofAppRunner.cpp#L31]()
+Add `/*` ... `*/` around the entire `ofSetupOpenGL()` method, including the `#include "ofAppGLFWWindow.h"`
 
 ### Compile openFrameworks
 ```
