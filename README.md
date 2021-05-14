@@ -362,6 +362,11 @@ sudo ./install_dependencies.sh
 sudo ./install_codecs.sh
 ```
 
+### Compile openFrameworks
+```
+make Release -C /home/pi/openFrameworks/libs/openFrameworksCompiled/project
+```
+
 ### Install ofxRPI4Window
 Before compiling openFrameworks, install ofxRPIWindow.
 
@@ -398,11 +403,6 @@ $ nano /home/pi/openFrameworks/libs/openFrameworks/app/ofAppRunner.cpp
 ```
 
 Add `/*` ... `*/` around the entire `ofSetupOpenGL()` method, including the `#include "ofAppGLFWWindow.h"`
-
-### Compile openFrameworks
-```
-make Release -C /home/pi/openFrameworks/libs/openFrameworksCompiled/project
-```
 
 ### Compile First App
 We are not using the openFrameworks examples, because we need to use the ofxRPI4Window instead
