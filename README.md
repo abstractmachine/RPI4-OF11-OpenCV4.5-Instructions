@@ -4,9 +4,9 @@ These are the steps I've been using recently to build a command-line only Raspbe
 
 Note: that we will be using raw OpenCV calls, and not depending on the openFrameworks libraries that are out of date and not well maintained. Plus, we want to use "as-is" the latest OpenCv C++ examples found online and in computer vision forums, courses, books, and training guides.
 
-You will find a lot of the latest neural network fancy fancy is mostly written in Python; but more and more is available in C++, especially for people working with smaller "on the edge" machine learning such as us and our Raspberry Pi configuration. OpenCV does not have all the latest Deep Learning integrated, but it has a lot that you can work with and has accelerated integration of neural network code over the past few years. If you are interrested in this aspect, a good starting poing is here: [](https://github.com/spmallick/learnopencv)
+You will find a lot of the latest neural network fancy fancy is mostly written in Python; but more and more is available in C++, especially for people working with smaller "on the edge" machine learning such as us and our Raspberry Pi configuration. OpenCV does not have all the latest Deep Learning integrated, but it has a lot that you can work with and has accelerated integration of neural network code over the past few years. If you are interrested in this aspect, a good starting poing is here: [LearnOpenCV](https://github.com/spmallick/learnopencv)
 
-Note: I have yet to figure out how to install openFrameworks on Raspberry OS 64. According to Q-Engineering, you can get significant speed increases with 64-bit Raspberry OS, so I will have to figure this out at some time. Cf. [](https://qengineering.eu/install-opencv-4.5-on-raspberry-64-os.html)
+Note: I have yet to figure out how to install openFrameworks on Raspberry OS 64. According to Q-Engineering, you can get significant speed increases with 64-bit Raspberry OS, so I will have to figure this out at some time. Cf. [Install OpenCV 4.5 on Raspberry 64 OS](https://qengineering.eu/install-opencv-4.5-on-raspberry-64-os.html)
 
 ## Raspberry Pi 4
 Using OpenCv requires a decent amount of RAM, but I have not been able to fully take advantage of all 8GB of the RPI4, despite numerous attemps. Most of my uses — for example processing full 1280 x 720 HDMI video feeds — seem to work fine with a 4GB Raspberry. I have not tested with 2GB Raspberry 4.
@@ -120,7 +120,7 @@ If you're still having problems with overscan, from the command line, open the e
 Quit the `nano` text editor by typing the `{ctrl}` + `x` keys > `y` + `{enter}`. And then reboot from the command line with `sudo reboot now`. You might need to `clear` and `{enter}` to see your command prompt.
 
 ## Bluetooth Keyboard
-I like using the Logitech K380 keyboards because they allow easy switching between various devices: Pi, Mac, Windows, iPadOS, etc. They come in pink, as well as other, less important, colors. They (finally) have all the colors in the French keyboard layout: [https://www.logitech.com/fr-ch/product/multi-device-keyboard-k380?crid=27](). These are very handy in complex art installations that often make it difficult to access the ports. 
+I like using the Logitech K380 keyboards because they allow easy switching between various devices: Pi, Mac, Windows, iPadOS, etc. They come in pink, as well as other, less important, colors. They (finally) have all the colors in the French keyboard layout: [Logitech K380 Multi-Device Keyboard](https://www.logitech.com/fr-ch/product/multi-device-keyboard-k380?crid=27). These are very handy in complex art and design installations I do that often make it difficult to access the ports. 
 
 To pair a bluetooth keyboard, you need put your keyboard into pairing mode, then to go into `bluetoothctl`, `scan` the bluetooth controller for available bluetooth devices identifiers, find your device, turn off scan, and then `pair`, `trust`, and `connect` your device.
 
@@ -163,7 +163,7 @@ sudo apt-get upgrade
 ```
 
 ## Install OpenCV
-This suite of commands is entirely based on the Q-Engineering OpenCV Installation guides: [https://qengineering.eu/install-opencv-4.5-on-raspberry-pi-4.html](). These guides are amazingly detailed with information that I will not reproduce here.
+This suite of commands is entirely based on the Q-Engineering OpenCV Installation guides: [Install OpenCV 4.5 on Raspberry PI 4](https://qengineering.eu/install-opencv-4.5-on-raspberry-pi-4.html). These guides are amazingly detailed with information that I will not reproduce here.
 
 ### Check eprom update
 ```
@@ -199,7 +199,7 @@ $ sudo apt-get install python-dev python-numpy
 ```
 
 ### OpenCV
-I am currently using `4.5.2`. Check for latest releases on [https://github.com/opencv]().
+I am currently using `4.5.2`. Check for latest releases on [github.com/opencv](https://github.com/opencv).
 
 Note: `-O` is the letter `O` for [`--output-document`](https://www.gnu.org/software/wget/manual/wget.html#Download-Options) and not the number zero.
 
@@ -346,7 +346,7 @@ python3
 
 ## Install openFrameworks 11.2
 
-We are following this guide, with some modifications: [https://openframeworks.cc/setup/raspberrypi/raspberry-pi-getting-started/]()
+We are following this guide, with some modifications: [openFrameworks on Raspberry PI: Getting Started](https://openframeworks.cc/setup/raspberrypi/raspberry-pi-getting-started/)
 
 ### Download OF 11.2
 
@@ -372,7 +372,7 @@ make Release -C /home/pi/openFrameworks/libs/openFrameworksCompiled/project
 ### Install ofxRPI4Window
 After compiling openFrameworks, install ofxRPIWindow.
 
-Cf. [https://github.com/jvcleave/ofxRPI4Window]()
+Cf. [ofxRPI4Window](https://github.com/jvcleave/ofxRPI4Window)
 
 Go into the `addons` folder and clone this addon:
 
@@ -433,7 +433,7 @@ This project will turn on a GPIO pin, send out a "hello" message via the OSC (Op
 
 We are going to use `systemd` to auto-start an app. This requires creating a script and then loading that script into `systemctl`.
 
-Cf. [https://www.raspberrypi.org/documentation/linux/usage/systemd.md]()
+Cf. [Raspberry Pi > systemd](https://www.raspberrypi.org/documentation/linux/usage/systemd.md)
 
 Create the config file:
 
@@ -454,7 +454,7 @@ WantedBy=multi-user.target
 ## Static IP Over Ethernet
 For installations, I tend to share my phone wifi with the Raspberry, so that I do not have any ugly hacks of my installation over the local wifi of the museum/school/whatever. Any other communication to/from the Raspberry, I use a directly wired Ethernet connections using a static IP adress. This allows me to code a fixed value in my openFrameworks app for the OSC communication.
 
-- Cf. [https://www.circuitbasics.com/how-to-set-up-a-static-ip-on-the-raspberry-pi/]()
+- Cf. [How To Setup a Static IP On The Raspberry PI](https://www.circuitbasics.com/how-to-set-up-a-static-ip-on-the-raspberry-pi/)
 
 `sudo nano /etc/dhcpcd.conf`
 
