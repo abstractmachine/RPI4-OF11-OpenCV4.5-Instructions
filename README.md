@@ -649,6 +649,25 @@ After those two changes, plug in a camera or capture device, and test the code:
 ```
 $ make && make run
 ```
+
+### Configure Input
+If you are not seeing incoming video, you might need to figure out the input name of your capture device.
+
+```
+v4l2-ctl --list-devices
+```
+
+On my Raspberry with an Elgato CamLink 4K device, I see:
+
+```
+Cam Link 4k: Cam Link 4k (usb-0000:01:00.0-2):
+	/dev/video0
+	/dev/video1
+```
+
+It's the third on the list, I need to call this video by it's name `dev/video0`.
+
+If we look directly in the [OpenCV Video Capture Class documentation](https://docs.opencv.org/3.4/d8/dfe/classcv_1_1VideoCapture.html), we see that [we can specify the name of the input capture source](https://docs.opencv.org/3.4/d8/dfe/classcv_1_1VideoCapture.html#af3b71a7c0c459704ed75568a01290457). So let's try that:
  
 ## Auto-start An App After Boot
 
