@@ -367,16 +367,17 @@ Before compiling openFrameworks, install ofxRPIWindow.
 
 Cf. [https://github.com/jvcleave/ofxRPI4Window]()
 
-Go into the `addons` folder and clone the this addon:
+Go into the `addons` folder and clone this addon:
 
 ```
-cd /home/pi/openFrameworks/addons
-git clone https://github.com/jvcleave/ofxRPI4Window.git
+$ sudo apt-get install git
+$ cd /home/pi/openFrameworks/addons
+$ git clone https://github.com/jvcleave/ofxRPI4Window.git
 ```
 
 Change config.linuxarmv6l.default.mk file:
 ```
-nano openFrameworks/libs/openFrameworksCompiled/project/linuxarmv6l/config.linuxarmv6l.default.mk
+nano /home/pi/openFrameworks/libs/openFrameworksCompiled/project/linuxarmv6l/config.linuxarmv6l.default.mk
 ```
 
 ```
@@ -391,6 +392,11 @@ endif
 ```
 
 And comment out `ofSetupOpenGL` in the `ofAppRunner.cpp` file on line #31.
+
+```
+$ nano /home/pi/openFrameworks/libs/openFrameworks/app/ofAppRunner.cpp
+```
+
 [https://github.com/openframeworks/openFrameworks/blob/master/libs/openFrameworks/app/ofAppRunner.cpp#L31]()
 
 ### Compile openFrameworks
