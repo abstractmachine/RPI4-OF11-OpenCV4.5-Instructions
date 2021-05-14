@@ -4,7 +4,7 @@ These are the steps I've been using recently to build a command-line only Raspbe
 
 Note: that we will be using raw OpenCV calls, and not depending on the openFrameworks libraries that are out of date and not well maintained. Plus, we want to use "as-is" the latest OpenCv C++ examples found online and in computer vision forums, courses, books, and training guides.
 
-You will find a lot of the latest neural network fancy fancy is mostly written in Python; but more and more is available in C++, especially for people working with smaller "on the edge" machine learning such as us and our Raspberry Pi configuration. OpenCV does not have all the latest Deep Learning integrated, but it has a lot that you can work with and has accelerated integration of neural network code over the past few years. If you are interrested in this aspect, a good starting poing is here: [github.com/spmallick/learnopencv](https://github.com/spmallick/learnopencv)
+You will find a lot of the latest neural network fancy fancy is mostly written in Python; but more and more is available in C++, especially for people working with smaller "on the edge" machine learning such as us and our Raspberry Pi configuration. OpenCV does not have all the latest Deep Learning integrated, but it has a lot that you can work with and has accelerated integration of neural network code over the past few years. If you are interrested in this aspect, a good starting poing is here: [github.com/spmallick/learnopencv](https://github.com/spmallick/learnopencv).
 
 Note: I have yet to figure out how to install openFrameworks on Raspberry OS 64. According to Q-Engineering, you can get significant speed increases with 64-bit Raspberry OS, so I will have to figure this out at some time. Cf. [Install OpenCV 4.5 on Raspberry 64 OS](https://qengineering.eu/install-opencv-4.5-on-raspberry-64-os.html)
 
@@ -372,6 +372,8 @@ make Release -C /home/pi/openFrameworks/libs/openFrameworksCompiled/project
 ### Install ofxRPI4Window
 After compiling openFrameworks, install ofxRPIWindow.
 
+We are using the "lite", command-line only version of Raspberry. Currently, if you want to run an openFrameworks designed app from the command line on Raspberry PI 4 without the "windowed" version installed, you need to use ofxRPI4Window as a starting point instead of the standard openFrameworks examples — for example the `empty` example. Currently, this addons does not have any keyboard implementation, which is fine for our uses because we'll be using the `GPIO` pins for input/output, similar to how we would work with an Arduino board.
+
 Cf. [ofxRPI4Window](https://github.com/jvcleave/ofxRPI4Window)
 
 Go into the `addons` folder and clone this addon:
@@ -424,10 +426,80 @@ cd /home/pi/openFrameworks/addons
 git clone https://github.com/kashimAstro/ofxGPIO.git
 ```
 
-### Create an OpenCV + ofxOsc + ofxGPIO Capable project
+## Create an OpenCV + ofxOsc + ofxGPIO Capable Project
 This project will turn on a GPIO pin, send out a "hello" message via the OSC (OpenSoundControl) protocol, and capture/display the feed from a video input. If this project compiles and runs, we're finally in a good place to hunker down and get to work.
 
+### Create An Empty Window Skeleton
+We are going to start with one of the smaller examples from ofxRPI4Window, which we will copy (and rename) into our `myApps` folder and rewrite as our new "bare bones" skeleton project.
 
+First, remove the current `empty` folder.
+
+```
+rm -R /home/pi/openFrameworks/apps/myApps/EmptyExample
+```
+
+Copy (`cp`) the contents of the example folder. I have called it `EmptyWindow`, but you can call it whatever you want:
+
+```
+cp -r /home/pi/openFrameworks/addons/ofxRPI4Window/example-3DPrimitives /home/pi/openFrameworks/apps/myApps/EmptyWindow
+```
+
+
+### Rewrite Example
+Now we will create a empty skeleton from which we can work. Let's empty out all the current code, and create a simple empty wrapper, waiting for our own code. Start by going into the `src` folder:
+
+```
+cd /home/pi/openFrameworks/apps/myApps/EmptyWindow/src
+```
+
+Edit the `ofApp.h` file and empty out most of its behavior, leaving only the skeleton `setup()`, `update()`, and `draw()` methods.
+
+```
+nano ofApp.h
+```
+
+Here is my current `ofApp.h` skeleton file:
+
+```
+#pragma once
+
+#include "ofMain.h"
+
+class ofApp : public ofBaseApp{
+	
+public:
+	void setup();
+	void update();
+	void draw();
+	
+};
+```
+
+Now edit the `ofApp.cpp` file, which contains the actual behavior of the app.
+
+```
+nano ofApp.cpp
+```
+
+Here is my current skeleton `ofApp.cpp` file:
+
+```
+#include "ofApp.h"
+
+void ofApp::setup(){
+	ofBackground(128);
+}
+
+
+void ofApp::update() {
+	
+}
+
+
+void ofApp::draw() {
+	
+}
+```
 
 ## Auto-start An App After Boot
 
