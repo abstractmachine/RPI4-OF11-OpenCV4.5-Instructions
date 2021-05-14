@@ -351,22 +351,22 @@ We are following this guide, with some modifications: [openFrameworks on Raspber
 ### Download OF 11.2
 
 ```
-cd
-wget https://openframeworks.cc/versions/v0.11.2/of_v0.11.2_linuxarmv6l_release.tar.gz
-mkdir openFrameworks
-tar vxfz of_v0.11.2_linuxarmv6l_release.tar.gz -C openFrameworks --strip-components 1
+$ cd
+$ wget https://openframeworks.cc/versions/v0.11.2/of_v0.11.2_linuxarmv6l_release.tar.gz
+$ mkdir openFrameworks
+$ tar vxfz of_v0.11.2_linuxarmv6l_release.tar.gz -C openFrameworks --strip-components 1
 ```
 
 ### Install dependencies
 ```
-cd /home/pi/openFrameworks/scripts/linux/debian
-sudo ./install_dependencies.sh
-sudo ./install_codecs.sh
+$ cd /home/pi/openFrameworks/scripts/linux/debian
+$ sudo ./install_dependencies.sh
+$ sudo ./install_codecs.sh
 ```
 
 ### Compile openFrameworks
 ```
-make Release -C /home/pi/openFrameworks/libs/openFrameworksCompiled/project
+$ make Release -C /home/pi/openFrameworks/libs/openFrameworksCompiled/project
 ```
 
 ### Install ofxRPI4Window
@@ -414,16 +414,16 @@ Add `/*` ... `*/` around the entire `ofSetupOpenGL()` method
 Copy and compile an ofxRPI4Window example and run it.
 
 ```
-cp -R /home/pi/openFrameworks/addons/ofxRPI4Window/example-billboard /home/pi/openFrameworks/apps/myApps/example-billboard
-cd /home/pi/openFrameworks/apps/myApps/example-billboard
-make
-make run
+$ cp -R /home/pi/openFrameworks/addons/ofxRPI4Window/example-billboard /home/pi/openFrameworks/apps/myApps/example-billboard
+$ cd /home/pi/openFrameworks/apps/myApps/example-billboard
+$ make
+$ make run
 ```
 
 ### Add the ofxGPIO addon
 ```
-cd /home/pi/openFrameworks/addons
-git clone https://github.com/kashimAstro/ofxGPIO.git
+$ cd /home/pi/openFrameworks/addons
+$ git clone https://github.com/kashimAstro/ofxGPIO.git
 ```
 
 ## Create Skeleton
@@ -432,13 +432,13 @@ We need an empty "skeleton" project from which to start each project. We are goi
 First, remove the current `empty` folder.
 
 ```
-rm -R /home/pi/openFrameworks/apps/myApps/EmptyExample
+$ rm -R /home/pi/openFrameworks/apps/myApps/EmptyExample
 ```
 
 Copy (`cp`) the contents of the example folder. I have called it `EmptyWindow`, but you can call it whatever you want:
 
 ```
-cp -r /home/pi/openFrameworks/addons/ofxRPI4Window/example-3DPrimitives /home/pi/openFrameworks/apps/myApps/EmptyWindow
+$ cp -r /home/pi/openFrameworks/addons/ofxRPI4Window/example-3DPrimitives /home/pi/openFrameworks/apps/myApps/EmptyWindow
 ```
 
 
@@ -446,13 +446,13 @@ cp -r /home/pi/openFrameworks/addons/ofxRPI4Window/example-3DPrimitives /home/pi
 Now we will create a empty skeleton from which we can work. Let's empty out all the current code, and create a simple empty wrapper, waiting for our own code. Start by going into the `src` folder:
 
 ```
-cd /home/pi/openFrameworks/apps/myApps/EmptyWindow/src
+$ cd /home/pi/openFrameworks/apps/myApps/EmptyWindow/src
 ```
 
 Edit the `ofApp.h` file and empty out most of its behavior, leaving only the skeleton `setup()`, `update()`, and `draw()` methods.
 
 ```
-nano ofApp.h
+$ nano ofApp.h
 ```
 
 Here is my current `ofApp.h` skeleton file:
@@ -475,7 +475,7 @@ public:
 Now edit the `ofApp.cpp` file, which contains the actual behavior of the app.
 
 ```
-nano ofApp.cpp
+$ nano ofApp.cpp
 ```
 
 Here is my current skeleton `ofApp.cpp` file:
@@ -518,7 +518,25 @@ This project will turn on a GPIO pin, send out a "hello" message via the OSC (Op
 Copy our skeleton into our new `ComputerVision` project
 
 ```
-cp -R /home/pi/openFrameworks/apps/myApps/EmptyWindow /home/pi/openFrameworks/apps/myApps/ComputerVision
+$ cp -R /home/pi/openFrameworks/apps/myApps/EmptyWindow /home/pi/openFrameworks/apps/myApps/ComputerVision
+$ cd /home/pi/openFrameworks/apps/myApps/ComputerVision
+```
+
+We are now in our new `ComputerVision` project.
+
+### Addons
+To add "addons", such as `ofxOsc`, we need to edit the `addons.make` file of our project.
+
+```
+$ nano addons.make
+```
+
+Here are the contents of my `addons.make` file:
+
+```
+ofxRPI4Window
+ofxOsc
+ofxGPIO
 ```
 
 ## Auto-start An App After Boot
