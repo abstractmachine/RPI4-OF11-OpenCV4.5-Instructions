@@ -368,7 +368,7 @@ make Release -C /home/pi/openFrameworks/libs/openFrameworksCompiled/project
 ```
 
 ### Install ofxRPI4Window
-Before compiling openFrameworks, install ofxRPIWindow.
+After compiling openFrameworks, install ofxRPIWindow.
 
 Cf. [https://github.com/jvcleave/ofxRPI4Window]()
 
