@@ -546,6 +546,7 @@ This will activate the `ofxRPI4Window`, `ofxOsc`, `ofxGPIO`, `ofxOpenCv` addons 
 Let's write a simple computer capture example.
 
 `ofApp.h`
+
 ```
 #pragma once
 
@@ -572,22 +573,24 @@ public:
 	ofTexture captureTexture;
 	// our desired size
 	cv::Size captureSize = cv::Size(1280, 720);
+	cv::Size processSize = cv::Size(640, 360);
 	// our desired framerate
 	int captureFramesPerSecond = 60;
 
 };
+
 ```
 
 `ofApp.cpp`
-```
 
+```
 #include "ofApp.h"
 
 void ofApp::setup(){
 	ofBackground(128);
 
 	// open default camera
-	capture.open(0, cv::CAP_V4L2);
+	capture.open("/dev/video1", cv::CAP_V4L2);
 	// set the width and height
 	capture.set(cv::CAP_PROP_FRAME_WIDTH, captureSize.width);
 	capture.set(cv::CAP_PROP_FRAME_HEIGHT, captureSize.height);
@@ -599,11 +602,16 @@ void ofApp::setup(){
 	captureSize.height = capture.get(cv::CAP_PROP_FRAME_HEIGHT);
 	captureFramesPerSecond = capture.get(cv::CAP_PROP_FPS);
 
+	cout << "\t" << capture.get(cv::CAP_PROP_FRAME_WIDTH);
+	cout << "\t" << capture.get(cv::CAP_PROP_FRAME_HEIGHT);
+	cout << "\t" << capture.get(cv::CAP_PROP_FPS);
+	cout << endl;
+
 	// if we successfully opened the camera stream
 	if (capture.isOpened())
 	{
 		// now that we know the size, we can allocate a texture with this size
-		captureTexture.allocate(captureSize.width, captureSize.height, GL_LUMINANCE);
+		captureTexture.allocate(processSize.width, processSize.height, GL_LUMINANCE);
 	}
 }
 
@@ -621,6 +629,7 @@ void ofApp::update() {
 			if (!frame.empty())
 			{
 				// process the image here
+				cv::resize(frame, frame, processSize);
 			}
 			// if (!empty)
 		}
@@ -640,8 +649,6 @@ void ofApp::draw() {
 		captureTexture.draw(0, 0, ofGetWidth(), ofGetHeight());
 	}
 }
-
-
 ```
 
 After those two changes, plug in a camera or capture device, and test the code:
@@ -668,6 +675,10 @@ Cam Link 4k: Cam Link 4k (usb-0000:01:00.0-2):
 It's the third on the list, I need to call this video by it's name `dev/video0`.
 
 If we look directly in the [OpenCV Video Capture Class documentation](https://docs.opencv.org/3.4/d8/dfe/classcv_1_1VideoCapture.html), we see that [we can specify the name of the input capture source](https://docs.opencv.org/3.4/d8/dfe/classcv_1_1VideoCapture.html#af3b71a7c0c459704ed75568a01290457). So let's try that:
+
+```
+
+```
  
 ## Auto-start An App After Boot
 
