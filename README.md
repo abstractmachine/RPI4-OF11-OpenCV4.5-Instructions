@@ -376,11 +376,13 @@ Go into the `addons` folder and clone this addon:
 
 ```
 $ sudo apt-get install git
+$ sudo apt-get install libgbm-dev
 $ cd /home/pi/openFrameworks/addons
 $ git clone https://github.com/jvcleave/ofxRPI4Window.git
 ```
 
 Change config.linuxarmv6l.default.mk file:
+
 ```
 nano /home/pi/openFrameworks/libs/openFrameworksCompiled/project/linuxarmv6l/config.linuxarmv6l.default.mk
 ```
@@ -402,7 +404,7 @@ And comment out `ofSetupOpenGL` in the `ofAppRunner.cpp` file on line #31.
 $ nano /home/pi/openFrameworks/libs/openFrameworks/app/ofAppRunner.cpp
 ```
 
-Add `/*` ... `*/` around the entire `ofSetupOpenGL()` method, including the `#include "ofAppGLFWWindow.h"`
+Add `/*` ... `*/` around the entire `ofSetupOpenGL()` method
 
 ### Compile First App
 We are not using the openFrameworks examples, because we need to use the ofxRPI4Window instead
