@@ -104,7 +104,7 @@ In this order of frequency, I use: French, Swiss French, American, Korean, Chine
 - `3` Interface > `P5` SPI > `YES` (if you do electronic interfacing stuff over I2C)
 
 ### KMS Graphics Driver
-- `?` Advanced Options > `?` GL Driver > `KMS Driver enabled`
+- `6` Advanced Options > `A2` GL Driver > `KMS Driver enabled`
 
 ### Display
 - `2` Display Options > `D2` Underscan > `YES/NO` (depending on your monitor's handling of the HDMI signal)
@@ -407,7 +407,7 @@ $ nano /home/pi/openFrameworks/libs/openFrameworks/app/ofAppRunner.cpp
 Add `/*` ... `*/` around the entire `ofSetupOpenGL()` method
 
 ### Compile First App
-For some reason that I have yet to figure out, we first need to complite a standard non-ofxRPI4Window app, and try to run it, *then* after that fail, compile an ofxRPI4Window example and run it.
+Copy and compile an ofxRPI4Window example and run it.
 
 ```
 cp -R /home/pi/openFrameworks/addons/ofxRPI4Window/example-billboard /home/pi/openFrameworks/apps/myApps/example-billboard
@@ -425,7 +425,6 @@ git clone https://github.com/kashimAstro/ofxGPIO.git
 ### Create an OpenCV + ofxOsc + ofxGPIO Capable project
 This project will turn on a GPIO pin, send out a "hello" message via the OSC (OpenSoundControl) protocol, and capture/display the feed from a video input. If this project compiles and runs, we're finally in a good place to hunker down and get to work.
 
-*To be continued*
 
 
 ## Auto-start An App After Boot
