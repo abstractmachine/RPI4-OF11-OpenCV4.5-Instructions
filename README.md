@@ -547,6 +547,8 @@ Note: The `ofxOpenCv` addon is just me being lazy. I haven't spent the time goin
 ### Add Basic CV Code
 Let's write a simple computer vision capture example that captures the video input and displays it on the screen.
 
+- - -
+
 `ofApp.h`
 
 ```
@@ -574,25 +576,29 @@ public:
 	// for visualizing in openFrameworks
 	ofTexture captureTexture;
 	// our desired size
-	cv::Size captureSize = cv::Size(1280, 720);
-	cv::Size processSize = cv::Size(640, 360);
+	cv::Size captureSize = cv::Size(640, 480);
+	cv::Size processSize = cv::Size(640, 480);
 	// our desired framerate
-	int captureFramesPerSecond = 60;
+	int captureFramesPerSecond = 30;
+	// is this black & white or is it rgb
+	unsigned int luminanceType;
 
 };
-
 ```
 
-`ofApp.cpp`
+- - -
 
+`ofApp.cpp`
 ```
 #include "ofApp.h"
 
-void ofApp::setup(){
+void ofApp::setup() {
+
+	// background color
 	ofBackground(128);
 
 	// open default camera
-	capture.open(0, cv::CAP_V4L2);
+	capture.open("/dev/video0", cv::CAP_V4L2);
 	// set the width and height
 	capture.set(cv::CAP_PROP_FRAME_WIDTH, captureSize.width);
 	capture.set(cv::CAP_PROP_FRAME_HEIGHT, captureSize.height);
@@ -604,21 +610,16 @@ void ofApp::setup(){
 	captureSize.height = capture.get(cv::CAP_PROP_FRAME_HEIGHT);
 	captureFramesPerSecond = capture.get(cv::CAP_PROP_FPS);
 
-	cout << "\t" << capture.get(cv::CAP_PROP_FRAME_WIDTH);
-	cout << "\t" << capture.get(cv::CAP_PROP_FRAME_HEIGHT);
-	cout << "\t" << capture.get(cv::CAP_PROP_FPS);
+	cout << "width:\t" << captureSize.width;
+	cout << "\theight:\t" << captureSize.height;
+	cout << "\tcapture fps:\t" << captureFramesPerSecond;
 	cout << endl;
 
-	// if we successfully opened the camera stream
-	if (capture.isOpened())
-	{
-		// now that we know the size, we can allocate a texture with this size
-		captureTexture.allocate(processSize.width, processSize.height, GL_LUMINANCE);
-	}
 }
 
 
 void ofApp::update() {
+
 	// if capture was successfully opened
 	if (capture.isOpened())
 	{
@@ -642,14 +643,33 @@ void ofApp::update() {
 
 
 void ofApp::draw() {
+
+	// if we actually have an image
 	if (!frame.empty())
 	{
-		// we use this texture to show what we're seeing
-		unsigned int luminanceType = frame.channels() == 3 ? GL_RGB : GL_LUMINANCE;
+		// if we successfully opened the camera stream
+		if (!captureTexture.isAllocated())
+		{
+			// we use this texture to show what we're seeing
+			luminanceType = frame.channels() == 3 ? GL_RGB : GL_LUMINANCE;
+			// now that we know the size, we can allocate a texture with this size
+			captureTexture.allocate(frame.cols, frame.rows, luminanceType);
+		}
+		// convert from bgr to rgb
+		cv::cvtColor(frame, frame, cv::COLOR_BGR2RGB);
+		// load the pixels into the texture
 		captureTexture.loadData(frame.ptr(), frame.cols, frame.rows, luminanceType);
+		// draw those pixels on the screen
 		ofSetColor(255, 255, 255);
 		captureTexture.draw(0, 0, ofGetWidth(), ofGetHeight());
 	}
+
+	// draw the framerate
+	ofSetColor(255,255,0);
+	ofDrawBitmapString( ofToString((int)ofGetFrameRate()), 50, 50 );
+	ofDrawBitmapString( ofToString(frame.cols), 50, 70 );
+	ofDrawBitmapString( ofToString(frame.rows), 50, 90 );
+	ofDrawBitmapString( ofToString(captureFramesPerSecond), 50, 110 );
 }
 ```
 
