@@ -729,7 +729,7 @@ WantedBy=multi-user.target
 Now that we have created the command (or "service") to auto-load the `AppName` app at bootup, and after the network has started, we now need to copy (`cp`) the file into the correct directory and `enable` it:
 
 ```
-$ sudo cp playvision.service /etc/systemd/system/appname.service
+$ sudo cp appname.service /etc/systemd/system/appname.service
 $ sudo systemctl enable appname.service
 ```
 
