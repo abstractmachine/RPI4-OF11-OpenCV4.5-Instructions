@@ -708,7 +708,11 @@ We are going to use `systemd` to auto-start this app. This requires creating a s
 
 Cf. [https://www.raspberrypi.org/documentation/linux/usage/systemd.md]()
 
-Create a text file using `nano` or whatever editor you prefer, containing the following instructions. Replace `AppName` with the name of your application:
+Create an `appname.service` text file using `nano` or whatever text editor you prefer, containing the following instructions. I use the command `nano appname.service` to create these types of text files directly on my Raspberry, but you can also use `ssh` from another computer if you want to use [VS Code](https://code.visualstudio.com) or whatever.
+
+Replace `AppName` with the name of your application:
+
+`appname.service`
 
 ```
 [Unit]
@@ -725,20 +729,20 @@ WantedBy=multi-user.target
 Now that we have created the command (or "service") to auto-load the `AppName` app at bootup, and after the network has started, we now need to copy (`cp`) the file into the correct directory and `enable` it:
 
 ```
-$ sudo cp playvision.service /etc/systemd/system/playvision.service
-$ sudo systemctl enable playvision.service
+$ sudo cp playvision.service /etc/systemd/system/appname.service
+$ sudo systemctl enable appname.service
 ```
 
 If, for whatever reason, we want to stop this service:
 
 ```
-$ sudo systemctl stop playvision.service
+$ sudo systemctl stop appname.service
 ```
 
 Tip: if you have errors in your service and you want to see the log, or errors, or messages, you can print out the console log for this specific service with the following command:
 
 ```
-$ sudo systemctl status playvision.service
+$ sudo systemctl status appname.service
 ```
 
 The basic commands you might need for controlling services are: `start`, `stop`, `status`, `enable`, and `disable`.
