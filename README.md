@@ -552,7 +552,7 @@ ofxOpenCv
 
 This will activate the `ofxRPI4Window`, `ofxOsc`, `ofxGPIO`, `ofxOpenCv` addons to our project.
 
-Note: The `ofxOpenCv` addon is just me being lazy. I haven't spent the time going through all its declarations that allow `openFrameworks` to link up to OpenCV. Despite this, we will be using "raw" OpenCV commands.
+Note: We are using the `ofxOpenCv` addon's `addons.make` file to link `openFrameworks` to the base `OpenCV` library files. Beyond this `make` file, we will ignore all of `ofxOpenCV`'s methods and members, and will only be using "raw" OpenCV commands in our code.
 
 ### Add Basic CV Code
 Let's write a simple computer vision capture example that captures the video input and displays it on the screen.
