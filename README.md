@@ -145,7 +145,7 @@ sudo bluetoothctl
 ```
 
 ## Connect Via SSH
-To control your Raspberry from your Mac, Windows or Linux computer, find your Raspberry's IP address by typing `ifconfig` on the command line of the Raspberry Pi. You'll find your Ethernet, localhost, and Wifi addresses listed as `inet 192.168.#.###` with actual numbers instead of `###`.
+To control your Raspberry from your Mac, Windows or Linux computer, find your Raspberry's IP address by typing `ifconfig` on the command line of the Raspberry Pi. You'll find your Ethernet, localhost, and Wifi addresses listed (for example) as `inet 192.168.#.###` with actual numbers instead of `###`.
 
 For example, on a Mac, open the **Terminal** (`{command}` + `{space}` + `Terminal`) and connect via SSH:
 
