@@ -1,4 +1,4 @@
-# RPI 4 Installation
+# RPI 4 Computer Vision Setup
 
 These are the steps I've been using recently to build a command-line only Raspberry PI 4 image with openFrameworks 11.2 and OpenCv 4.5.x. This has been tested with the Raspberry Pi 4b and Compute Module 4.
 
