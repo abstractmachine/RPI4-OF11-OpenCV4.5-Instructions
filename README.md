@@ -164,7 +164,7 @@ code /Users/abstractmachine/.ssh/known_hosts
 ### SSH Extension in VS Code
 An even more elegant solution for coding your Raspberry from the comfort of another computer/laptop is the [SSH Extension in VS Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh). To install, just follow that link and it will open the extension in your VS Code browser.
 
-You can also open the internal terminal view (`View` > `Terminal`) and control your Raspberry directly from within VS Code.
+Once you are connected via this extension, you can open the internal terminal view (`View` > `Terminal`) and control your Raspberry directly from within VS Code.
 
 ## Update
 ```
