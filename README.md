@@ -1,6 +1,6 @@
 # RPI 4 Computer Vision Setup
 
-These are the steps I've been using recently to build a command-line only [Raspberry PI](https://www.raspberrypi.org) 4 image with [openFrameworks](https://openframeworks.cc) 11.2 and [OpenCv](https://opencv.org) 4.5.x. This has been tested with the Raspberry Pi 4b and Compute Module 4.
+These are the steps I've been using recently to build a command-line only [Raspberry PI](https://www.raspberrypi.org) 4 image with [openFrameworks](https://openframeworks.cc) 11.2 and [OpenCv](https://opencv.org) 4.5.x. This has been tested with the [Raspberry Pi 4b](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/), [Pi 400](https://www.raspberrypi.org/products/raspberry-pi-400/), and [Compute Module 4](https://www.raspberrypi.org/products/compute-module-4/?variant=raspberry-pi-cm4001000).
 
 Note: that we will be using raw OpenCV calls, and not depending on the openFrameworks libraries that are out of date and not well maintained. Plus, we want to use "as-is" the latest OpenCv C++ examples found online and in computer vision forums, courses, books, and training guides.
 
