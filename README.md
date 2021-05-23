@@ -522,7 +522,7 @@ We should see an empty screen with a gray background. This is our new skeleton `
 Press `{ctrl}` + `c` to quit this app.
 
 ## Create an OpenCV + ofxOsc + ofxGPIO Capable Project
-This project will turn on a GPIO pin, send out a "hello" message via the OSC (OpenSoundControl) protocol, and capture/display the feed from a video input. If this project compiles and runs, we're finally in a good place to hunker down and get to work.
+This project will turn on a GPIO pin via [ofxGPIO](https://github.com/kashimAstro/ofxGPIO), send out a "hello" message via the [OSC](https://openframeworks.cc/documentation/ofxOsc/) ([Open Sound Control](https://en.wikipedia.org/wiki/Open_Sound_Control)) protocol, and capture/display the feed from a video input. If this project compiles and runs, we're finally in a good place to hunker down and get to work.
 
 ### Copy Skeleton
 Copy our skeleton into our new `ComputerVision` project
