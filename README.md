@@ -714,10 +714,10 @@ void ofApp::draw() {
 	// if we actually have an image
 	if (!frame.empty())
 	{
-		// if we successfully opened the camera stream
+		// if we haven't created a render texture yet
 		if (!captureTexture.isAllocated())
 		{
-			// we use this texture to show what we're seeing
+			// we need to know if this is black & white or color
 			luminanceType = frame.channels() == 3 ? GL_RGB : GL_LUMINANCE;
 			// now that we know the size, we can allocate a texture with this size
 			captureTexture.allocate(frame.cols, frame.rows, luminanceType);
