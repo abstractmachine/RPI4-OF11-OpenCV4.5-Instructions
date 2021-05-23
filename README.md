@@ -564,12 +564,20 @@ Let's write a simple computer vision capture example that captures the video inp
 ```
 #pragma once
 
+// OpenCv
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
 #include "opencv2/objdetect.hpp"
 #include <opencv2/ml.hpp>
 
+// Open Sound Control for communication
+#include "ofxOsc.h"
+
+// Control the General Purpose Input/Output pins
+#include "ofxGPIO.h"
+
+// openFrameworks
 #include "ofMain.h"
 
 class ofApp : public ofBaseApp{
@@ -579,6 +587,14 @@ public:
 	void update();
 	void draw();
 
+	// OSC send/receive
+	ofxOscSender oscSender;
+	ofxOscReceiver oscReceiver;
+
+	// GPIO control of led pin
+	GPIO gpioLed;
+	GPIO gpioButton;
+
 	// the connection to the capture device
 	cv::VideoCapture capture;
 	// the frame we've captured
@@ -586,10 +602,10 @@ public:
 	// for visualizing in openFrameworks
 	ofTexture captureTexture;
 	// our desired size
-	cv::Size captureSize = cv::Size(640, 480);
-	cv::Size processSize = cv::Size(640, 480);
-	// our desired framerate
-	int captureFramesPerSecond = 30;
+	cv::Size captureSize = cv::Size(1920, 1080);
+	cv::Size processSize = cv::Size(640, 360);
+	// our desired capture framerate
+	int captureFramesPerSecond = 60;
 	// is this black & white or is it rgb
 	unsigned int luminanceType;
 
@@ -607,6 +623,8 @@ void ofApp::setup() {
 	// background color
 	ofBackground(128);
 
+	// Setup OpenCV
+
 	// open default camera
 	capture.open("/dev/video0", cv::CAP_V4L2);
 	// set the width and height
@@ -620,15 +638,52 @@ void ofApp::setup() {
 	captureSize.height = capture.get(cv::CAP_PROP_FRAME_HEIGHT);
 	captureFramesPerSecond = capture.get(cv::CAP_PROP_FPS);
 
-	cout << "width:\t" << captureSize.width;
-	cout << "\theight:\t" << captureSize.height;
-	cout << "\tcapture fps:\t" << captureFramesPerSecond;
+	cout << "cv::VideoCapture\twidth: " << captureSize.width;
+	cout << "\theight: " << captureSize.height;
+	cout << "\tcapture fps: " << captureFramesPerSecond;
 	cout << endl;
+
+	// Setup OSC
+
+	// setup OSC listening port
+	oscReceiver.setup(6666);
+	 // we will test by sending a message to ourself
+	oscSender.setup("127.0.0.1", 6666);
+
+	// Send out a "/hello" test message
+	ofxOscMessage message;
+	string address = "/hello";
+	message.setAddress(address);
+	oscSender.sendMessage(message,false);
+
+	// Setup GPIO Pin 23 as output
+	gpioLed.setup("23");
+	gpioLed.export_gpio();
+	gpioButton.setup("24");
+	gpioButton.export_gpio();
+	// let GPIO do it's thing before setting the direction
+	// cf. https://forum.openframeworks.cc/t/ofxgpio-update-debian-stretch/28430/9
+	ofSleepMillis(100);
+	gpioLed.setdir_gpio("out");
+	gpioButton.setdir_gpio("in");
 
 }
 
 
 void ofApp::update() {
+
+	// did we receive an OSC message?
+	while (oscReceiver.hasWaitingMessages()) {
+		ofxOscMessage incomingMessage;
+		oscReceiver.getNextMessage(incomingMessage);
+		cout << "ofxOscReceiver\t>\tofxOscMessage: " << incomingMessage << endl;
+	}
+
+	// check the GPIO button input 
+	string buttonState = "0";
+	gpioButton.getval_gpio(buttonState);
+	// use that input to change the LED state
+	gpioLed.setval_gpio(buttonState);
 
 	// if capture was successfully opened
 	if (capture.isOpened())
@@ -641,6 +696,8 @@ void ofApp::update() {
 			// if we have a frame with content
 			if (!frame.empty())
 			{
+				// convert from bgr to rgb
+				cv::cvtColor(frame, frame, cv::COLOR_BGR2RGB);
 				// process the image here
 				cv::resize(frame, frame, processSize);
 			}
@@ -665,8 +722,6 @@ void ofApp::draw() {
 			// now that we know the size, we can allocate a texture with this size
 			captureTexture.allocate(frame.cols, frame.rows, luminanceType);
 		}
-		// convert from bgr to rgb
-		cv::cvtColor(frame, frame, cv::COLOR_BGR2RGB);
 		// load the pixels into the texture
 		captureTexture.loadData(frame.ptr(), frame.cols, frame.rows, luminanceType);
 		// draw those pixels on the screen
