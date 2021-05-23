@@ -704,11 +704,11 @@ capture.open("dev/video0", cv::CAP_V4L2);
  
 ## Auto-start An App After Boot
 
-We are going to use `systemd` to auto-start an app. This requires creating a script and then loading that script into `systemctl`.
+We are going to use `systemd` to auto-start this app. This requires creating a script and then loading that script into `systemctl`.
 
-Cf. [Raspberry Pi > systemd](https://www.raspberrypi.org/documentation/linux/usage/systemd.md)
+Cf. [https://www.raspberrypi.org/documentation/linux/usage/systemd.md]()
 
-Create the config file:
+Create a text file using `nano` or whatever editor you prefer, containing the following instructions. Replace `AppName` with the name of your application:
 
 ```
 [Unit]
@@ -716,25 +716,52 @@ Description=AppName
 After=network.target
 
 [Service]
-ExecStart=/home/pi/openFrameworks/apps/myApps/AppName/bin/AppName
+ExecStart=/home/pi/openFrameworks/apps/abstractmachine/AppName/bin/AppName
 
 [Install]
 WantedBy=multi-user.target
 ```
 
-*To be continued (esp. commands to start, stop, disable, enable, and check output/errors of systemd services)*
+Now that we have created the command (or "service") to auto-load the `AppName` app at bootup, and after the network has started, we now need to copy (`cp`) the file into the correct directory and `enable` it:
+
+```
+$ sudo cp playvision.service /etc/systemd/system/playvision.service
+$ sudo systemctl enable playvision.service
+```
+
+If, for whatever reason, we want to stop this service:
+
+```
+$ sudo systemctl stop playvision.service
+```
+
+Tip: if you have errors in your service and you want to see the log, or errors, or messages, you can print out the console log for this specific service with the following command:
+
+```
+$ sudo systemctl status playvision.service
+```
+
+The basic commands you might need for controlling services are: `start`, `stop`, `status`, `enable`, and `disable`.
 
 ## Static IP Over Ethernet
-For installations, I tend to share my phone wifi with the Raspberry, so that I do not have any ugly hacks of my installation over the local wifi of the museum/school/whatever. Any other communication to/from the Raspberry, I use a directly wired Ethernet connections using a static IP adress. This allows me to code a fixed value in my openFrameworks app for the OSC communication.
+While preparing installations, I tend to share my phone wifi with the Raspberry, so that I do not have any script kiddies taking over my installation over the local wifi of the museum/school/whatever once it is installed. For any required communication to/from the Raspberry, I use a directly wired Ethernet connection with a static IP adress. This allows me to code a fixed value in my openFrameworks app for the `OSC` communication. This is perhaps not the most elegant, but it is stable and works. I have *never* encountered a problem with this method, whereas I have *almost always* had some sort of problem when using wifi.
+
+This fixed IP solution only creates a fixed IP over wired Ethernet. The wifi connection still works for commanding the installation via wifi.
 
 - Cf. [How To Setup a Static IP On The Raspberry PI](https://www.circuitbasics.com/how-to-set-up-a-static-ip-on-the-raspberry-pi/)
 
+Modify the *Dynamic Host Configuration Profile*:
+
 `sudo nano /etc/dhcpcd.conf`
 
-Set the Ethernet port configuration to a static address. Use `10.0.0.2` for Controller and `10.0.0.3` for Slave. I formerly used `10.0.0.1` but some routers prefer to reserve this address.
+Within that file, find the Ethernet instructions and set the Ethernet port configuration to a static address:
 
 ```
 # Example static IP configuration:
 interface eth0
-static ip_address=10.0.0.3/24
+static ip_address=10.0.0.2/24
 ```
+
+Use `10.0.0.2` for the "controller" and `10.0.0.3` for the "slave" (yes, traditional computer-ese terms are shockingly colonial).
+
+Note: I formerly used `10.0.0.1` but some routers prefer to reserve this address. You might need to move up to `10.0.0.11` and `10.0.0.12` as some routers automatically reserve `10.0.0.0` to `10.0.0.10` for whatever. Again, this is just from experience. Your mileage may vary.
