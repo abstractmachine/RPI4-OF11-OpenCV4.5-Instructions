@@ -744,7 +744,7 @@ After those two changes, plug in a camera or capture device, and test the code:
 $ make && make run
 ```
 
-### Configure Input
+### Configure Video Input
 If you are not seeing incoming video, you might need to figure out the input name of your capture device.
 
 ```
@@ -766,6 +766,13 @@ If we look directly in the [OpenCV Video Capture Class documentation](https://do
 ```
 capture.open("dev/video0", cv::CAP_V4L2);
 ```
+
+### Button & LED Circuit
+The above example tests for input from a button, and turns on or off an LED based on the button's input. This is a simple circuit designed solely to demonstrate the basic behavior of GPIO input and output.
+
+Here is the circuit for the GPIO test:
+
+![](GPIO-Button-LED.svg)
  
 ## Auto-start An App After Boot
 
