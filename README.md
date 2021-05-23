@@ -554,7 +554,7 @@ This will activate the `ofxRPI4Window`, `ofxOsc`, `ofxGPIO`, `ofxOpenCv` addons 
 
 Note: We are using the `ofxOpenCv` addon's `addons.make` file to link `openFrameworks` to the base `OpenCV` library files. Beyond this `make` file, we will ignore all of `ofxOpenCV`'s methods and members, and will only be using "raw" OpenCV commands in our code.
 
-### Add Basic CV Code
+### Add Base Computer Vision Code
 Let's write a simple computer vision capture example that captures the video input and displays it on the screen.
 
 - - -
